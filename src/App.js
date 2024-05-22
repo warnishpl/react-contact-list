@@ -1,72 +1,104 @@
 import './App.css';
+import addIcon from './assets/add-icon.svg';
+import sortAzIcon from './assets/sort-ascending-letters.svg';
+// import sortZaIcon from './assets/sort-descending-letters.svg';
+import trashIcon from './assets/trash.svg';
+import copyIcon from './assets/copy-plus.svg';
+// import copyDoneIcon from './assets/copy-check.svg';
 
-function Text({ name }) {
-	return (
-		<>
-			<h1>Hello {name}</h1>
-		</>
-	);
-}
-
-function TextWithChildren({ children }) {
-	return (
-		<>
-			<h1>Hello {children}</h1>
-		</>
-	);
-}
-const person = {
-	name: 'kacper',
-	surname: 'kowalski',
-	age: 18,
-};
-const personList = [
+const contactsList = [
 	{
 		name: 'kacper',
 		surname: 'kowalski',
-		age: 18,
+		tel: "+48 796 152 114",
 	},
 	{
 		name: 'adam',
 		surname: 'milczek',
-		age: 22,
+		tel: "+48 602 553 153",
 	},
 	{
 		name: 'anna',
 		surname: 'adamska',
-		age: 60,
+		tel: '+48 533 159 446',
 	},
 ];
-const Txt = ({ personalData }) => {
-	const { name, surname, age } = personalData;
-	return (
-		<h1>
-			czesc {name} {surname}, wiem ze masz {age} lat
-		</h1>
-	);
-};
 
 function App() {
 	return (
 		<>
-			<h1>Lista osób:</h1>
-			{personList.map((element) => (
-				<Txt personalData={element} key={element.surname} />
-			))}
+			<div class='main'>
+				<div class='search-container'>
+					<div class='search-field'>
+						<input
+							type='search'
+							id='search-contact'
+							placeholder='Wyszukaj kontakt'
+						/>
+					</div>
+					<div class='add-contact-button'>
+						<button>
+							<img src={addIcon} alt='dodaj kontakt' />
+						</button>
+					</div>
+				</div>
+
+				<div class='contacts-container'>
+					<div class='contacts-header-container'>
+						<div class='contacts-header'>
+							<h1>Moje kontakty</h1>
+						</div>
+						<div class='contacts-header-sorting-button'>
+							<button>
+								<img src={sortAzIcon} alt='sortuj liste od a do z' />
+							</button>
+						</div>
+					</div>
+					<ContactItems />
+				</div>
+			</div>
 		</>
 	);
 }
 
-// function App() {
-// 	return (
-// 		<>
-// 			<Text name='Beata' />
-// 			<Text name='Kamil' />
-// 			<Text name='Anna' />
-// 			<Txt personalData={person} />
-// 			<TextWithChildren>Kaśka</TextWithChildren>
-// 		</>
-// 	);
-// }
+function ContactItems() {
+	return (
+		<>
+			<div class='contact-items'>
+				{contactsList.map((element) => (
+					<ContactItem personalData={element} key={element.surname} />
+				))}
+			</div>
+		</>
+	);
+}
+const ContactItem = ({ personalData }) => {
+	const { name, surname, tel } = personalData;
+	return (
+		<div class='contact-item'>
+			<div class='first-line'>
+				<div class='contact-name'>
+					<p>{name} {surname}</p>
+				</div>
+				<div class='delete-button'>
+					<button>
+						<img src={trashIcon} alt='usuń kontakt' />
+					</button>
+				</div>
+			</div>
+			<div class='second-line'>
+				<div class='contact-number'>
+					<p>{tel}</p>
+				</div>
+				<div class='copy-button'>
+					<button>
+						<img src={copyIcon} alt='skopiuj numer' />
+					</button>
+				</div>
+			</div>
+		</div>
+	);
+};
+
 
 export default App;
