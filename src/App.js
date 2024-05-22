@@ -8,19 +8,54 @@ import copyIcon from './assets/copy-plus.svg';
 
 const contactsList = [
 	{
-		name: 'kacper',
-		surname: 'kowalski',
-		tel: "+48 796 152 114",
+		name: 'Ayla Meland',
+		phone: '21763438',
+		picture: 'https://randomuser.me/api/portraits/med/women/41.jpg',
 	},
 	{
-		name: 'adam',
-		surname: 'milczek',
-		tel: "+48 602 553 153",
+		name: 'Emma Kuusisto',
+		phone: '08-489-046',
+		picture: 'https://randomuser.me/api/portraits/med/women/67.jpg',
 	},
 	{
-		name: 'anna',
-		surname: 'adamska',
-		tel: '+48 533 159 446',
+		name: 'Siddharth Bangera',
+		phone: '8462139119',
+		picture: 'https://randomuser.me/api/portraits/med/men/37.jpg',
+	},
+	{
+		name: 'Olesya Kapustyanskiy',
+		phone: '(066) C90-6270',
+		picture: 'https://randomuser.me/api/portraits/med/women/59.jpg',
+	},
+	{
+		name: 'Ruby Li',
+		phone: '(350)-806-8254',
+		picture: 'https://randomuser.me/api/portraits/med/women/76.jpg',
+	},
+	{
+		name: 'Ingo Cardoso',
+		phone: '(64) 6321-4208',
+		picture: 'https://randomuser.me/api/portraits/med/men/26.jpg',
+	},
+	{
+		name: 'Ria da Conceição',
+		phone: '(15) 7772-6293',
+		picture: 'https://randomuser.me/api/portraits/med/women/90.jpg',
+	},
+	{
+		name: 'Paola Melo',
+		phone: '(42) 9146-3180',
+		picture: 'https://randomuser.me/api/portraits/med/women/23.jpg',
+	},
+	{
+		name: 'Kathy Watts',
+		phone: '031-363-8332',
+		picture: 'https://randomuser.me/api/portraits/med/women/27.jpg',
+	},
+	{
+		name: 'علی نجاتی',
+		phone: '066-76025733',
+		picture: 'https://randomuser.me/api/portraits/med/men/3.jpg',
 	},
 ];
 
@@ -66,39 +101,43 @@ function ContactItems() {
 		<>
 			<div class='contact-items'>
 				{contactsList.map((element) => (
-					<ContactItem personalData={element} key={element.surname} />
+					<ContactItem personalData={element} key={element.name} />
 				))}
 			</div>
 		</>
 	);
 }
 const ContactItem = ({ personalData }) => {
-	const { name, surname, tel } = personalData;
+	const { name, phone, picture } = personalData;
 	return (
 		<div class='contact-item'>
-			<div class='first-line'>
-				<div class='contact-name'>
-					<p>{name} {surname}</p>
-				</div>
-				<div class='delete-button'>
-					<button>
-						<img src={trashIcon} alt='usuń kontakt' />
-					</button>
-				</div>
+			<div class='picture'>
+				<img src={picture} alt='zdjęcie profilowe'></img>
 			</div>
-			<div class='second-line'>
-				<div class='contact-number'>
-					<p>{tel}</p>
+			<div class='personal-data'>
+				<div class='first-line'>
+					<div class='contact-name'>
+						<p>{name}</p>
+					</div>
+					<div class='delete-button'>
+						<button>
+							<img src={trashIcon} alt='usuń kontakt' />
+						</button>
+					</div>
 				</div>
-				<div class='copy-button'>
-					<button>
-						<img src={copyIcon} alt='skopiuj numer' />
-					</button>
+				<div class='second-line'>
+					<div class='contact-number'>
+						<p>{phone}</p>
+					</div>
+					<div class='copy-button'>
+						<button>
+							<img src={copyIcon} alt='skopiuj numer' />
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
-
 
 export default App;

@@ -53,12 +53,11 @@ table {
 }
 .search-field {
 	width: stretch;
-    min-width: 195px;
+	min-width: 195px;
 }
 .search-field input {
 	height: 60px;
 	width: stretch;
-    
 	padding-left: 37px;
 	margin-right: 10px;
 	border-radius: 10px;
@@ -78,6 +77,10 @@ table {
 	justify-content: center;
 	align-items: center;
 	background-color: #b6e4fd;
+	transition: background-color 0.3s ease;
+}
+.add-contact-button button:hover {
+	background-color: #ade0fc;
 }
 /* search row */
 
@@ -85,7 +88,7 @@ table {
 /* contact header */
 .contacts-container {
 	margin-top: 10px;
-    min-width: 290px;
+	min-width: 290px;
 }
 .contacts-header-container {
 	display: flex;
@@ -114,6 +117,7 @@ table {
 	align-items: center;
 }
 .contact-item {
+    display: flex;
 	width: stretch;
 	height: 120px;
 	padding: 20px;
@@ -121,6 +125,17 @@ table {
 	margin-bottom: 15px;
 	border-radius: 8px;
 	background-color: #f7f7f7;
+	transition: 0.3s ease-in;
+}
+.contact-item:hover {
+    background-color: #ebebeb;
+}
+.picture img {
+    border-radius: 50%;
+}
+.personal-data {
+    margin-left: 10px;
+    width: stretch;
 }
 .first-line {
 	display: flex;
@@ -140,3 +155,9 @@ table {
 /* contact item */
 /* contacts container */
 /* content */
+
+/* @media (min-width: 992px) {
+    .main {
+        display: flex;
+    }
+} */
