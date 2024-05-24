@@ -1,11 +1,12 @@
-import addIcon from '../assets/add-icon.svg';
+import { ReactComponent as AddIcon } from '../../assets/add-icon.svg';
+import './AddContactButton.styles.css';
 
 export function AddContactButton() {
 	return (
 		<>
 			<div className='add-contact-button'>
 				<button>
-					<img src={addIcon} alt='dodaj kontakt' />
+					<AddIcon />
 				</button>
 			</div>
 		</>

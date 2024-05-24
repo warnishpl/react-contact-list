@@ -1,0 +1,18 @@
+.search-field {
+	width: stretch;
+	min-width: 195px;
+}
+.search-field input {
+	height: 60px;
+	width: stretch;
+	padding-left: 37px;
+	margin-right: 10px;
+	border-radius: 10px;
+	border: none;
+	font-size: 16px;
+	line-height: 60px;
+	background: url('../../assets/search.svg');
+	background-color: #f7f7f7;
+	background-position: 10px 50%;
+	background-repeat: no-repeat;
+}

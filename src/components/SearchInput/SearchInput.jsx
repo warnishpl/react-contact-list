@@ -1,3 +1,5 @@
+import './SearchInput.styles.css'
+
 export function SearchInput() {
 	return (
 		<>

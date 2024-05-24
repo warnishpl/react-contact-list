@@ -41,47 +41,20 @@ table {
 
 /* content */
 .main {
-	font-family: 'Inter', sans-serif;
+	
 	display: block;
 }
 /* search row */
 .search-container {
 	display: flex;
+	position: sticky;
+	top: 10px;
 	margin: 20px;
 	justify-content: space-between;
 	align-items: center;
 }
-.search-field {
-	width: stretch;
-	min-width: 195px;
-}
-.search-field input {
-	height: 60px;
-	width: stretch;
-	padding-left: 37px;
-	margin-right: 10px;
-	border-radius: 10px;
-	border: none;
-	font-size: 16px;
-	line-height: 60px;
-	background: url('./assets/search.svg');
-	background-color: #f7f7f7;
-	background-position: 10px 50%;
-	background-repeat: no-repeat;
-}
-.add-contact-button button {
-	display: flex;
-	width: 60px;
-	height: 60px;
-	border-radius: 10px;
-	justify-content: center;
-	align-items: center;
-	background-color: #b6e4fd;
-	transition: background-color 0.3s ease;
-}
-.add-contact-button button:hover {
-	background-color: #ade0fc;
-}
+
+
 /* search row */
 
 /* contacts container */
@@ -101,10 +74,6 @@ table {
 	margin-left: 20px;
 	margin-bottom: 20px;
 }
-.contacts-header-sorting-button {
-	margin-right: 30px;
-	transform: translate(0, -35%);
-}
 .contacts-header-sorting-button button {
 	background-color: rgba(0, 0, 0, 0);
 }
@@ -117,7 +86,7 @@ table {
 	align-items: center;
 }
 .contact-item {
-    display: flex;
+	display: flex;
 	width: stretch;
 	height: 120px;
 	padding: 20px;
@@ -128,14 +97,14 @@ table {
 	transition: 0.3s ease-in;
 }
 .contact-item:hover {
-    background-color: #ebebeb;
+	background-color: #ebebeb;
 }
 .picture img {
-    border-radius: 50%;
+	border-radius: 50%;
 }
 .personal-data {
-    margin-left: 10px;
-    width: stretch;
+	margin-left: 10px;
+	width: stretch;
 }
 .first-line {
 	display: flex;
@@ -149,15 +118,13 @@ table {
 	margin-top: 10px;
 	font-size: 18px;
 }
-.copy-button {
-	margin-left: 5px;
-}
+
 /* contact item */
 /* contacts container */
 /* content */
 
 @media (min-width: 992px) {
-    .main {
-        display: flex;
-    }
+	.main {
+		display: flex;
+	}
 }

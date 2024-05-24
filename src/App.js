@@ -1,10 +1,11 @@
 import './App.css';
 
-import { CopyButton } from './components/CopyButton.jsx';
-import { DeleteButton } from './components/DeleteButton.jsx';
-import { AddContactButton } from './components/AddContactButton.jsx';
-import { SortButton } from './components/SortButton.jsx';
-import { SearchInput } from './components/SearchInput.jsx';
+import { CopyButton } from './components/CopyButton/CopyButton.jsx';
+import { DeleteButton } from './components/DeleteButton/DeleteButton.jsx';
+import { AddContactButton } from './components/AddContactButton/AddContactButton.jsx';
+import { SortButton } from './components/SortButton/SortButton.jsx';
+import { SearchInput } from './components/SearchInput/SearchInput.jsx';
+import { State } from './components/State/State.js';
 
 const contactsList = [
 	{
@@ -60,37 +61,34 @@ const contactsList = [
 ];
 
 function App() {
-	return (
-		<>
-			<div className='main'>
-				<div className='search-container'>
-					<SearchInput />
-					<AddContactButton />
-				</div>
 
-				<div className='contacts-container'>
-					<div className='contacts-header-container'>
-						<div className='contacts-header'>
-							<h1>Moje kontakty</h1>
-						</div>
-						<SortButton />
-					</div>
-					<ContactItems />
-				</div>
+	return (
+		<div className='main'>
+			<div className='search-container'>
+				<SearchInput />
+				<AddContactButton />
 			</div>
-		</>
+
+			<div className='contacts-container'>
+				<div className='contacts-header-container'>
+					<div className='contacts-header'>
+						<h1>Moje kontakty</h1>
+					</div>
+					<SortButton />
+				</div>
+				<ContactItems />
+			</div>
+		</div>
 	);
 }
 
 function ContactItems() {
 	return (
-		<>
-			<div className='contact-items'>
-				{contactsList.map((element) => (
-					<ContactItem personalData={element} key={element.name} />
-				))}
-			</div>
-		</>
+		<div className='contact-items'>
+			{contactsList.map((element) => (
+				<ContactItem personalData={element} key={element.name} />
+			))}
+		</div>
 	);
 }
 const ContactItem = ({ personalData }) => {
@@ -117,5 +115,4 @@ const ContactItem = ({ personalData }) => {
 		</div>
 	);
 };
-
 export default App;

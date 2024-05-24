@@ -1,0 +1,13 @@
+.add-contact-button button {
+	display: flex;
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	background-color: #b6e4fd;
+	transition: background-color 0.3s ease;
+}
+.add-contact-button button:hover {
+	background-color: #ade0fc;
+}
