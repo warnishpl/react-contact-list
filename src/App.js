@@ -2,9 +2,8 @@ import './App.css';
 import addIcon from './assets/add-icon.svg';
 import sortAzIcon from './assets/sort-ascending-letters.svg';
 // import sortZaIcon from './assets/sort-descending-letters.svg';
-import trashIcon from './assets/trash.svg';
-import copyIcon from './assets/copy-plus.svg';
-// import copyDoneIcon from './assets/copy-check.svg';
+import { CopyButton } from './components/CopyButton.jsx';
+import { DeleteButton } from './components/DeleteButton.jsx';
 
 const contactsList = [
 	{
@@ -119,21 +118,13 @@ const ContactItem = ({ personalData }) => {
 					<div class='contact-name'>
 						<p>{name}</p>
 					</div>
-					<div class='delete-button'>
-						<button>
-							<img src={trashIcon} alt='usuń kontakt' />
-						</button>
-					</div>
+					<DeleteButton />
 				</div>
 				<div class='second-line'>
 					<div class='contact-number'>
 						<p>{phone}</p>
 					</div>
-					<div class='copy-button'>
-						<button>
-							<img src={copyIcon} alt='skopiuj numer' />
-						</button>
-					</div>
+					<CopyButton />
 				</div>
 			</div>
 		</div>

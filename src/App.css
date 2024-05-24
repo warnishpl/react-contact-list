@@ -156,8 +156,8 @@ table {
 /* contacts container */
 /* content */
 
-/* @media (min-width: 992px) {
+@media (min-width: 992px) {
     .main {
         display: flex;
     }
-} */
+}
