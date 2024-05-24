@@ -7,7 +7,9 @@ export function AddContactButton() {
 			<div className='add-contact-button'>
 				<button>
 					<AddIcon />
+					<p>Dodaj kontakt</p>
 				</button>
+				
 			</div>
 		</>
 	);

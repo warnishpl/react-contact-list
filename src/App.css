@@ -29,6 +29,7 @@ select {
 button {
 	border: none;
 	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0);
 }
 textarea {
 	resize: vertical;
@@ -40,91 +41,18 @@ table {
 /* reset */
 
 /* content */
-.main {
-	
-	display: block;
+main {
+	display: grid;
+	grid-template-columns: [margin-left] 30px [content-start] 1fr [content-mid] auto [content-end] 30px [margin-right];
+	grid-template-rows: [margin-top] 30px [content-top] 70px [header-top] auto [header-bottom] auto [content-mid] 1fr [content-bottom] 30px [margin-bottom];
+	min-width: 350px;
 }
-/* search row */
-.search-container {
-	display: flex;
-	position: sticky;
-	top: 10px;
-	margin: 20px;
-	justify-content: space-between;
-	align-items: center;
-}
-
-
-/* search row */
-
-/* contacts container */
-/* contact header */
-.contacts-container {
-	margin-top: 10px;
-	min-width: 290px;
-}
-.contacts-header-container {
-	display: flex;
-	font-size: 14px;
-	padding-left: 10px;
-	align-items: center;
-	justify-content: space-between;
-}
-.contacts-header h1 {
-	margin-left: 20px;
-	margin-bottom: 20px;
-}
-.contacts-header-sorting-button button {
-	background-color: rgba(0, 0, 0, 0);
-}
-/* contact header */
-/* contact item */
-.contact-items {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-.contact-item {
-	display: flex;
-	width: stretch;
-	height: 120px;
-	padding: 20px;
-	margin: 0 20px;
-	margin-bottom: 15px;
-	border-radius: 8px;
-	background-color: #f7f7f7;
-	transition: 0.3s ease-in;
-}
-.contact-item:hover {
-	background-color: #ebebeb;
-}
-.picture img {
-	border-radius: 50%;
-}
-.personal-data {
-	margin-left: 10px;
-	width: stretch;
-}
-.first-line {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-size: 20px;
-}
-.second-line {
-	display: flex;
-	align-items: center;
-	margin-top: 10px;
-	font-size: 18px;
-}
-
-/* contact item */
-/* contacts container */
-/* content */
 
 @media (min-width: 992px) {
-	.main {
-		display: flex;
+	main {
+		display: grid;
+		grid-template-columns: [margin-left] 30px [content-start] auto [content-mid] 60dvw [content-end] 30px [margin-right];
+		grid-template-rows: [margin-top] 30px [content-top] 70px [header-top] auto [header-bottom] auto [content-mid] 1fr [content-bottom] 30px [margin-bottom];
 	}
 }
+/* content */

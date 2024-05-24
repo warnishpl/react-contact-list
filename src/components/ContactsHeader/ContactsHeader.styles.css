@@ -1,0 +1,26 @@
+.contacts-header-container {
+	display: flex;
+	margin: 10px 0;
+	padding-left: 10px;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 14px;
+	background-color: #fff;
+	grid-row: header-top / header-bottom;
+	grid-column: content-start / content-end;
+}
+.contacts-header {
+	display: flex;
+	align-items: center;
+}
+
+@media (min-width: 992px) {
+	.contacts-container {
+		grid-row: content-mid / content-bottom;
+		grid-column: content-mid / content-end;
+	}
+	.contacts-header-container {
+		grid-row: header-top / header-bottom;
+		grid-column: content-mid / content-end;
+	}
+}
