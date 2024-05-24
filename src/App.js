@@ -1,9 +1,10 @@
 import './App.css';
-import addIcon from './assets/add-icon.svg';
-import sortAzIcon from './assets/sort-ascending-letters.svg';
-// import sortZaIcon from './assets/sort-descending-letters.svg';
+
 import { CopyButton } from './components/CopyButton.jsx';
 import { DeleteButton } from './components/DeleteButton.jsx';
+import { AddContactButton } from './components/AddContactButton.jsx';
+import { SortButton } from './components/SortButton.jsx';
+import { SearchInput } from './components/SearchInput.jsx';
 
 const contactsList = [
 	{
@@ -61,32 +62,18 @@ const contactsList = [
 function App() {
 	return (
 		<>
-			<div class='main'>
-				<div class='search-container'>
-					<div class='search-field'>
-						<input
-							type='search'
-							id='search-contact'
-							placeholder='Wyszukaj kontakt'
-						/>
-					</div>
-					<div class='add-contact-button'>
-						<button>
-							<img src={addIcon} alt='dodaj kontakt' />
-						</button>
-					</div>
+			<div className='main'>
+				<div className='search-container'>
+					<SearchInput />
+					<AddContactButton />
 				</div>
 
-				<div class='contacts-container'>
-					<div class='contacts-header-container'>
-						<div class='contacts-header'>
+				<div className='contacts-container'>
+					<div className='contacts-header-container'>
+						<div className='contacts-header'>
 							<h1>Moje kontakty</h1>
 						</div>
-						<div class='contacts-header-sorting-button'>
-							<button>
-								<img src={sortAzIcon} alt='sortuj liste od a do z' />
-							</button>
-						</div>
+						<SortButton />
 					</div>
 					<ContactItems />
 				</div>
@@ -98,7 +85,7 @@ function App() {
 function ContactItems() {
 	return (
 		<>
-			<div class='contact-items'>
+			<div className='contact-items'>
 				{contactsList.map((element) => (
 					<ContactItem personalData={element} key={element.name} />
 				))}
@@ -109,19 +96,19 @@ function ContactItems() {
 const ContactItem = ({ personalData }) => {
 	const { name, phone, picture } = personalData;
 	return (
-		<div class='contact-item'>
-			<div class='picture'>
+		<div className='contact-item'>
+			<div className='picture'>
 				<img src={picture} alt='zdjęcie profilowe'></img>
 			</div>
-			<div class='personal-data'>
-				<div class='first-line'>
-					<div class='contact-name'>
+			<div className='personal-data'>
+				<div className='first-line'>
+					<div className='contact-name'>
 						<p>{name}</p>
 					</div>
 					<DeleteButton />
 				</div>
-				<div class='second-line'>
-					<div class='contact-number'>
+				<div className='second-line'>
+					<div className='contact-number'>
 						<p>{phone}</p>
 					</div>
 					<CopyButton />

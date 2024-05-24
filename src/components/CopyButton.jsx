@@ -4,7 +4,7 @@ import copyIcon from '../assets/copy-plus.svg';
 export function CopyButton() {
 	return (
 		<>
-			<div class='copy-button'>
+			<div className='copy-button'>
 				<button>
 					<img src={copyIcon} alt='skopiuj numer' />
 				</button>
