@@ -4,12 +4,10 @@ import { ButtonWrapper, Button } from './DeleteButton.styles.js';
 
 export function DeleteButton() {
 	return (
-		<>
-			<ButtonWrapper>
-				<Button>
-					<TrashIcon />
-				</Button>
-			</ButtonWrapper>
-		</>
+		<ButtonWrapper>
+			<Button>
+				<TrashIcon />
+			</Button>
+		</ButtonWrapper>
 	);
 }
