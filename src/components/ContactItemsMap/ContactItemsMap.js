@@ -1,5 +1,5 @@
 import { ContactItem } from '../ContactItem/ContactItem';
-import './ContactItemsMap.styles.css';
+import { ContactsWrapper } from './ContactItemsMap.styles.js';
 
 const contactsList = [
 	{
@@ -56,12 +56,10 @@ const contactsList = [
 
 export function ContactItemsMap() {
 	return (
-		<div className='contacts-container'>
-			<div className='contact-items'>
-				{contactsList.map((element) => (
-					<ContactItem personalData={element} key={element.name} />
-				))}
-			</div>
-		</div>
+		<ContactsWrapper>
+			{contactsList.map((element) => (
+				<ContactItem personalData={element} key={element.name} />
+			))}
+		</ContactsWrapper>
 	);
 }

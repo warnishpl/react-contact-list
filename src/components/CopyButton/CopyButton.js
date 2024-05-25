@@ -1,15 +1,15 @@
 import { ReactComponent as CopyIcon } from '../../assets/copy-plus.svg';
 // import {ReactComponent as CopyDoneIcon } from '../../assets/copy-check.svg';
-import './CopyButton.styles.css'
+import {ButtonWrapper, Button} from './CopyButton.styles.js'
 
 export function CopyButton() {
 	return (
 		<>
-			<div className='copy-button'>
-				<button>
+			<ButtonWrapper>
+				<Button>
 					<CopyIcon />
-				</button>
-			</div>
+				</Button>
+			</ButtonWrapper>
 		</>
 	);
 }

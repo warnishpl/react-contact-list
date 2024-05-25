@@ -1,16 +1,15 @@
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg';
-import './AddContactButton.styles.css';
+import { Wrapper, Button, P } from './AddContactButton.styles.js';
 
 export function AddContactButton() {
 	return (
 		<>
-			<div className='add-contact-button'>
-				<button>
+			<Wrapper>
+				<Button>
 					<AddIcon />
-					<p>Dodaj kontakt</p>
-				</button>
-				
-			</div>
+					<P>Dodaj kontakt</P>
+				</Button>
+			</Wrapper>
 		</>
 	);
 }

@@ -1,9 +1,9 @@
 import {SetGlobalStyle, Main} from './App.style.js';
-import { AddContactButton } from './components/AddContactButton/AddContactButton.jsx';
-import { ContactsHeader } from './components/ContactsHeader/ContactsHeader.jsx';
-import { SearchInput } from './components/SearchInput/SearchInput.jsx';
+import { AddContactButton } from './components/AddContactButton/AddContactButton.js';
+import { ContactsHeader } from './components/ContactsHeader/ContactsHeader.js';
+import { SearchInput } from './components/SearchInput/SearchInput.js';
 // import { State } from './components/State/State.js';
-import { ContactItemsMap } from './components/ContactItemsMap/ContactItemsMap.jsx';
+import { ContactItemsMap } from './components/ContactItemsMap/ContactItemsMap.js';
 
 function App() {
 	return (
