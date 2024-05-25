@@ -1,11 +1,12 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const mediaStyles = css`
-@media (min-width: 992px) {
-	&:hover {
-		background-color: #ebebeb;
+	@media (min-width: 992px) {
+		&:hover {
+			background-color: #ebebeb;
+		}
 	}
-}`
+`;
 export const ContactItemWrapper = styled.div`
 	display: flex;
 	width: -webkit-fill-available;
@@ -41,5 +42,3 @@ export const SecondLineWrapper = styled.div`
 	align-items: center;
 	font-size: 18px;
 `;
-
-
