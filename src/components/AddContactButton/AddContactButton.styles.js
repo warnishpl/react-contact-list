@@ -49,15 +49,24 @@ export const Background = styled.div`
 	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.2);
 	z-index: 0;
+	@media (min-width: 992px) {
+		display: none;
+	}
 `;
 export const AddContactFormWrapper = styled.div`
 	position: fixed;
 	display: flex;
-	top: 50%;
+	bottom: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, +50%);
 	justify-content: center;
 	align-items: center;
+	border-radius: 20px;
+	@media (min-width: 992px) {
+		transform: translate(-50%,0);
+		left: 280px;
+		bottom: 10vh;
+	}
 `;
 export const AddContactBox = styled.div`
 	display: flex;
@@ -70,9 +79,12 @@ export const AddContactBox = styled.div`
 	z-index: 2;
 	justify-content: space-between;
 	align-items: center;
+	
 	@media (min-width: 576px) {
 		width: 400px;
+		min-height: 370px;
 		height: 50vh;
+		background-color: #f7f7f7;
 	}
 `;
 export const Header = styled.div`

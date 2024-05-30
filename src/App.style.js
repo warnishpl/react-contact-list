@@ -51,7 +51,7 @@ export const Main = styled.main`
 
 	@media (min-width: 992px) {
 		display: grid;
-		grid-template-columns: [margin-left] 30px [content-start] auto [content-mid] 60dvw [content-end] 30px [margin-right];
+		grid-template-columns: [margin-left] 30px [content-start] 500px [content-mid] minmax(400px,auto) [content-end] minmax(50px, auto) [margin-right];
 		grid-template-rows: [margin-top] 30px [content-top] 70px [header-top] auto [header-bottom] auto [content-mid] 1fr [content-bottom] 30px [margin-bottom];
 	}
 `;

@@ -19,7 +19,7 @@ export function AddContactButton() {
 	const [isAddFormShown, setIsAddFormShown] = useState(false);
 	function ShowAddContactForm() {
 		setIsAddFormShown(!isAddFormShown);
-		console.log('a');
+		console.log('addcontact form');
 	}
 	return (
 		<>
