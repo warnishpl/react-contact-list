@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css} from 'styled-components';
 
 export const mediaStyles = css`
 	@media (min-width: 992px) {
-		grid-row: content-mid / content-bottom;
+		grid-row: content-top / content-mid;
 		grid-column: content-start / content-mid;
 		justify-self: center;
 
@@ -63,11 +63,12 @@ export const AddContactFormWrapper = styled.div`
 	align-items: center;
 	border-radius: 20px;
 	@media (min-width: 992px) {
-		transform: translate(-50%,0);
+		transform: translate(-50%, 0);
 		left: 280px;
 		bottom: 10vh;
 	}
 `;
+
 export const AddContactBox = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -79,12 +80,25 @@ export const AddContactBox = styled.div`
 	z-index: 2;
 	justify-content: space-between;
 	align-items: center;
-	
+	transition: background-color 0.3s ease;
+
 	@media (min-width: 576px) {
 		width: 400px;
 		min-height: 370px;
 		height: 50vh;
 		background-color: #f7f7f7;
+		&:hover,
+		&:focus-within {
+			background-color: #ebebeb;
+		}
+	}
+`;
+export const IconWrapper = styled.div`
+	position: absolute;
+	left: 30px;
+	top: 35px;
+	@media (min-width: 992px) {
+		display: none;
 	}
 `;
 export const Header = styled.div`

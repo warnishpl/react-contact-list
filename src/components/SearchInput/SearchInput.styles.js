@@ -6,7 +6,8 @@ export const mediaStyles = css`
 		grid-row: content-top / header-top;
 		padding-right: 0;
 
-		input:hover {
+		input:hover,
+		input:focus-within {
 			background-color: #eeeeee;
 		}
 	}

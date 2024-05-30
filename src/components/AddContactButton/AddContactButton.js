@@ -1,11 +1,14 @@
 import { useState } from 'react';
+import { ReactComponent as BackIcon } from '../../assets/arrow-left.svg';
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg';
+
 import {
 	Wrapper,
 	Button,
 	P,
 	AddContactFormWrapper,
 	AddContactBox,
+	IconWrapper,
 	Header,
 	Background,
 	InputsWrapper,
@@ -17,10 +20,11 @@ import { SaveButton } from '../SaveButton/SaveButton.js';
 
 export function AddContactButton() {
 	const [isAddFormShown, setIsAddFormShown] = useState(false);
+
 	function ShowAddContactForm() {
 		setIsAddFormShown(!isAddFormShown);
-		console.log('addcontact form');
 	}
+
 	return (
 		<>
 			<Wrapper>
@@ -34,6 +38,9 @@ export function AddContactButton() {
 					<Background onClick={ShowAddContactForm}></Background>
 					<AddContactFormWrapper>
 						<AddContactBox>
+							<IconWrapper>
+								<BackIcon onClick={ShowAddContactForm} />
+							</IconWrapper>
 							<Header>
 								<p>Dodaj kontakt</p>
 							</Header>
