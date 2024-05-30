@@ -1,6 +1,13 @@
 import { CopyButton } from '../CopyButton/CopyButton.js';
 import { DeleteButton } from '../DeleteButton/DeleteButton.js';
-import {ContactItemWrapper, PictureWrapper, PersonalDataWrapper, Wrapper, FirstLineWrapper, SecondLineWrapper} from './ContactItem.styles.js';
+import {
+	ContactItemWrapper,
+	PictureWrapper,
+	PersonalDataWrapper,
+	Wrapper,
+	FirstLineWrapper,
+	SecondLineWrapper,
+} from './ContactItem.styles.js';
 
 export const ContactItem = ({ personalData }) => {
 	const { name, phone, picture } = personalData;
@@ -20,7 +27,7 @@ export const ContactItem = ({ personalData }) => {
 					<Wrapper>
 						<p>{phone}</p>
 					</Wrapper>
-					<CopyButton />
+					<CopyButton textToCopy={phone} />
 				</SecondLineWrapper>
 			</PersonalDataWrapper>
 		</ContactItemWrapper>

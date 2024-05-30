@@ -9,7 +9,7 @@ function App() {
 	return (
 		<Main>
 			<SetGlobalStyle />
-			<SearchInput/>
+			<SearchInput />
 			<AddContactButton />
 			<ContactsHeader />
 			<ContactItemsMap />

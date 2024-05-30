@@ -38,4 +38,7 @@ export const Input = styled.input`
 	background-position: 10px 50%;
 	background-repeat: no-repeat;
 	transition: background-color 0.3s ease;
+	&:focus {
+		outline: 1px solid #6cc8fb;
+	}
 `;
