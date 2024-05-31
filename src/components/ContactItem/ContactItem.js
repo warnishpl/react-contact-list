@@ -4,31 +4,30 @@ import {
 	ContactItemWrapper,
 	PictureWrapper,
 	PersonalDataWrapper,
-	Wrapper,
-	FirstLineWrapper,
-	SecondLineWrapper,
+	NameWrapper,
+	PhoneWrapper,
+	DeleteIconWrapper,
 } from './ContactItem.styles.js';
 
 export const ContactItem = ({ personalData }) => {
 	const { name, phone, picture } = personalData;
 	return (
 		<ContactItemWrapper>
-			<PictureWrapper>
-				<img src={picture} alt='zdjęcie profilowe'></img>
-			</PictureWrapper>
 			<PersonalDataWrapper>
-				<FirstLineWrapper>
-					<Wrapper>
-						<p>{name}</p>
-					</Wrapper>
+				<PictureWrapper>
+					<img src={picture} alt='zdjęcie profilowe'></img>
+				</PictureWrapper>
+				<NameWrapper>
+					<p>{name}</p>
+				</NameWrapper>
+				<DeleteIconWrapper>
 					<DeleteButton />
-				</FirstLineWrapper>
-				<SecondLineWrapper>
-					<Wrapper>
-						<p>{phone}</p>
-					</Wrapper>
+				</DeleteIconWrapper>
+
+				<PhoneWrapper>
+					<p>{phone}</p>
 					<CopyButton textToCopy={phone} />
-				</SecondLineWrapper>
+				</PhoneWrapper>
 			</PersonalDataWrapper>
 		</ContactItemWrapper>
 	);
