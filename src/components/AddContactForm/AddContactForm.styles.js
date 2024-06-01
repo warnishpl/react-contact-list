@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 export const Background = styled.div`
 	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 100%;
+	background-color: ${({ theme }) => theme.colors.backgroundTransparent};
 	z-index: 0;
+	${media.lg`
+	display: none;
+	`}
 `;
 export const AddContactFormWrapper = styled.div`
 	position: fixed;
@@ -16,8 +20,12 @@ export const AddContactFormWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	border-radius: 20px;
-	@media (min-width: 992px) {
-	}
+	${media.lg`
+		position: static;
+		grid-row: header-bottom / content-bottom;
+		grid-column: content-start / content-mid;
+		transform: translate(0, 0);
+	`}
 `;
 
 export const AddContactBox = styled.div`
@@ -27,35 +35,38 @@ export const AddContactBox = styled.div`
 	height: 80vh;
 	padding: 20px;
 	border-radius: 20px;
-    background-color: #f7f7f7;
+	background-color: ${({ theme }) => theme.colors.itemBackground};
 	z-index: 2;
 	justify-content: space-between;
 	align-items: center;
+	min-height: 340px;
 	transition: background-color 0.3s ease;
-	@media (min-width: 576px) {
+	${media.sm`
 		width: 400px;
 		min-height: 370px;
 		height: 50vh;
-	}
+	`}
 `;
 export const IconWrapper = styled.div`
-	position: absolute;
-	left: 30px;
-	top: 35px;
-	@media (min-width: 992px) {
-		/* display: none; */
-	}
+	${media.lg`
+	display: none;
+	`}
 `;
 export const Header = styled.div`
-	display: flex;
 	width: 100%;
 	padding-top: 20px;
 	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
 
 	p {
 		font-size: 16px;
 		font-weight: bold;
 	}
+	${media.lg`
+	grid-template-columns: auto;
+	`}
 `;
 export const InputsWrapper = styled.div``;
 export const InputTitle = styled.div`
@@ -71,10 +82,12 @@ export const Input = styled.input`
 	height: 50px;
 	padding-left: 20px;
 	padding-right: 20px;
-	border: 1px solid #878787;
-	background-color: #f8f8f8;
+	border: 1px solid ${({ theme }) => theme.colors.inputBorder};
+	background-color: ${({ theme }) => theme.colors.background};
+	transition: background-color 0.3s ease;
 	&:focus {
 		border: none;
-		outline: 1px solid #6cc8fb;
+		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
+		background-color: ${({ theme }) => theme.colors.inputBackground};
 	}
 `;

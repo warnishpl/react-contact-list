@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from '../../styles/media';
 
 export const ContactsWrapper = styled.div`
 	min-width: 290px;
@@ -8,8 +9,8 @@ export const ContactsWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	@media (min-width: 992px) {
+	${media.lg`
 		grid-column: content-mid / content-end;
 		grid-row: header-bottom / content-bottom;
-	}
+	`}
 `;

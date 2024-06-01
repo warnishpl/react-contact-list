@@ -17,10 +17,10 @@ export function AddContactForm({ onClose }) {
 			<Background onClick={onClose}></Background>
 			<AddContactFormWrapper>
 				<AddContactBox>
-					<IconWrapper>
-						<BackIcon onClick={onClose} />
-					</IconWrapper>
 					<Header>
+						<IconWrapper>
+							<BackIcon onClick={onClose} />
+						</IconWrapper>
 						<p>Dodaj kontakt</p>
 					</Header>
 					<InputsWrapper>

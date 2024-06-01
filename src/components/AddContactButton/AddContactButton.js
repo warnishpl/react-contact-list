@@ -1,5 +1,4 @@
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg';
-
 import { Wrapper, Button, P } from './AddContactButton.styles.js';
 // import { AddContactForm } from './../AddContactForm/AddContactForm.js';
 

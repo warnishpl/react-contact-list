@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CopyButton } from '../CopyButton/CopyButton.js';
 import { DeleteButton } from '../DeleteButton/DeleteButton.js';
 import {
@@ -11,8 +12,12 @@ import {
 
 export const ContactItem = ({ personalData }) => {
 	const { name, phone, picture } = personalData;
+	const [isExtended, setIsExtended] = useState(false);
+	function handlerIsExtended() {
+		setIsExtended(!isExtended);
+	}
 	return (
-		<ContactItemWrapper>
+		<ContactItemWrapper onClick={handlerIsExtended} isExtended={isExtended}>
 			<PersonalDataWrapper>
 				<PictureWrapper>
 					<img src={picture} alt='zdjęcie profilowe'></img>

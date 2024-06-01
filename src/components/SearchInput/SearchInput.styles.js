@@ -1,17 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import media from '../../styles/media';
 
-export const mediaStyles = css`
-	@media (min-width: 992px) {
-		grid-column: content-mid / content-end;
-		grid-row: content-top / header-top;
-		padding-right: 0;
-
-		input:hover,
-		input:focus-within {
-			background-color: #eeeeee;
-		}
-	}
-`;
 export const InputWrapper = styled.div`
 	position: sticky;
 	top: 0px;
@@ -22,24 +11,35 @@ export const InputWrapper = styled.div`
 	grid-column: content-start / content-mid;
 	grid-row: content-top / header-top;
 	padding-right: 10px;
-	background-color: #fff;
-	${mediaStyles}
+	/* background-color: ${({ theme }) => theme.colors.background}; */
+	${media.lg`
+		grid-column: content-mid / content-end;
+		grid-row: content-top / header-top;
+		padding-right: 0;
+	`}
 `;
 
 export const Input = styled.input`
 	height: 60px;
-	width: -webkit-fill-available;
+	width: 100%;
 	padding-left: 37px;
+	padding-right: 20px;
 	border-radius: 10px;
 	border: none;
 	font-size: 16px;
 	line-height: 60px;
 	background: url('../../assets/search.svg');
-	background-color: #f7f7f7;
+	background-color: ${({ theme }) => theme.colors.itemBackground};
 	background-position: 10px 50%;
 	background-repeat: no-repeat;
 	transition: background-color 0.3s ease;
 	&:focus {
-		outline: 1px solid #6cc8fb;
+		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
 	}
+	${media.lg`
+		&:hover,
+		&:focus-within {
+			background-color: ${({ theme }) => theme.colors.inputBackground};
+		}
+	`}
 `;

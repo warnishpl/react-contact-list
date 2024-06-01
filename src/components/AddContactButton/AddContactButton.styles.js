@@ -1,23 +1,7 @@
-import styled, { css} from 'styled-components';
+import styled from 'styled-components';
+import media from '../../styles/media';
 
-export const mediaStyles = css`
-	@media (min-width: 992px) {
-		grid-row: content-top / content-mid;
-		grid-column: content-start / content-mid;
-		justify-self: center;
 
-		button {
-			width: 170px;
-			justify-content: space-evenly;
-		}
-		button:hover {
-			background-color: #9fd5fc;
-		}
-		p {
-			display: flex;
-		}
-	}
-`;
 export const Wrapper = styled.div`
 	position: sticky;
 	display: flex;
@@ -25,8 +9,12 @@ export const Wrapper = styled.div`
 	height: 70px;
 	grid-row: content-top / header-top;
 	grid-column: content-mid / content-end;
-	background-color: #fff;
-	${mediaStyles}
+	background-color: ${({ theme }) => theme.colors.background};
+	${media.lg`
+		grid-row: content-top / content-mid;
+		grid-column: content-start / content-mid;
+		justify-self: center;
+	`}
 `;
 export const Button = styled.button`
 	display: flex;
@@ -36,10 +24,19 @@ export const Button = styled.button`
 	border-radius: 10px;
 	justify-content: center;
 	align-items: center;
-	background-color: #b6e4fd;
+	background-color: ${({ theme }) => theme.colors.button};
 	transition: background-color 0.3s ease;
+	${media.lg`
+		width: 170px;
+		justify-content: space-evenly;
+		&:hover {
+			background-color: ${({ theme }) => theme.colors.buttonHover};
+		}
+	`}
 `;
 export const P = styled.p`
 	display: none;
+	${media.lg`
+		display: flex;
+	`}
 `;
-
