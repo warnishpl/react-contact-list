@@ -42,6 +42,7 @@ export const AddContactBox = styled.div`
 	min-height: 340px;
 	transition: background-color 0.3s ease;
 	${media.sm`
+		align-self: flex-start;
 		width: 400px;
 		min-height: 370px;
 		height: 50vh;
@@ -54,7 +55,7 @@ export const IconWrapper = styled.div`
 `;
 export const Header = styled.div`
 	width: 100%;
-	padding-top: 20px;
+	padding: 20px ;
 	justify-content: center;
 	display: grid;
 	grid-template-columns: 1fr auto 1fr;
@@ -68,13 +69,25 @@ export const Header = styled.div`
 	grid-template-columns: auto;
 	`}
 `;
-export const InputsWrapper = styled.div``;
+export const InputsWrapper = styled.div`
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
 export const InputTitle = styled.div`
+	align-self: start;
 	font-size: 14px;
 	padding: 20px 0 5px 0;
 	p {
 		padding-left: 10px;
 	}
+`;
+export const ImgInput = styled.input`
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: ${({ theme }) => theme.colors.inputBorder};
 `;
 export const Input = styled.input`
 	border-radius: 10px;

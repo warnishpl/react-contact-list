@@ -1,5 +1,9 @@
 import { Button } from './SaveButton.styled.js';
 
-export function SaveButton() {
-	return <Button>zapisz</Button>;
+export function SaveButton({ onClick, ...props }) {
+	return (
+		<Button onClick={onClick} {...props}>
+			Zapisz
+		</Button>
+	);
 }

@@ -16,7 +16,7 @@ export const ContactItemWrapper = styled.div`
 		&:hover {
 			background-color: ${({ theme }) => theme.colors.itemBackgroundHover};
 		}
-		${({ isExtended }) =>
+		/* ${({ isExtended }) =>
 			isExtended &&
 			css`
 				height: 120px;
@@ -24,7 +24,7 @@ export const ContactItemWrapper = styled.div`
 				&:hover {
 					background-color: ${({ theme }) => theme.colors.buttonHover};
 				}
-			`}
+			`} */
 	`}
 `;
 

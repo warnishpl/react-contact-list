@@ -10,7 +10,12 @@ import {
 	DeleteIconWrapper,
 } from './ContactItem.styles.js';
 
-export const ContactItem = ({ personalData }) => {
+export const ContactItem = ({
+	personalData,
+	setContactsList,
+	id,
+	updateLocalStorage,
+}) => {
 	const { name, phone, picture } = personalData;
 	const [isExtended, setIsExtended] = useState(false);
 	function handlerIsExtended() {
@@ -26,7 +31,11 @@ export const ContactItem = ({ personalData }) => {
 					<p>{name}</p>
 				</NameWrapper>
 				<DeleteIconWrapper>
-					<DeleteButton />
+					<DeleteButton
+						id={id}
+						setContactsList={setContactsList}
+						updateLocalStorage={updateLocalStorage}
+					/>
 				</DeleteIconWrapper>
 
 				<PhoneWrapper>

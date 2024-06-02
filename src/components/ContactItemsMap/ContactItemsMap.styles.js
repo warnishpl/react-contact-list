@@ -7,9 +7,10 @@ export const ContactsWrapper = styled.div`
 	grid-row: content-mid / content-bottom;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	${media.lg`
+		
 		grid-column: content-mid / content-end;
 		grid-row: header-bottom / content-bottom;
 	`}

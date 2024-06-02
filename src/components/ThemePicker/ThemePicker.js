@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
 import { Select, Option } from './ThemePicker.styles.js';
-import { blue, blueDark, green, greenDark } from '../../styles/theme.js'; 
+import { blue, blueDark, green, greenDark } from '../../styles/theme.js';
 
 const themes = {
 	blue,
@@ -18,14 +17,13 @@ export function ThemePicker() {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Select>
-				{Object.keys(themes).map((themeName) => (
-					<Option key={themeName} onClick={() => handleTheme(themeName)}>
-						{themeName}
-					</Option>
-				))}
-			</Select>
-		</ThemeProvider>
+		<Select>
+			{Object.keys(themes).map((themeName) => (
+				<Option key={themeName} onClick={() => handleTheme(themeName)}>
+					{themeName}
+					
+				</Option>
+			))}
+		</Select>
 	);
 }
