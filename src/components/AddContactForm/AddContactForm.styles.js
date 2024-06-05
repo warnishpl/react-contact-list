@@ -112,7 +112,10 @@ const ChldrensOfPhoneInputWrapper = css`
 		outline: none;
 	}
 `;
-export const PrefixSelector = styled.select`
+export const PrefixList = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 20%;
 	border-bottom-left-radius: 10px;
 	border-top-left-radius: 10px;
@@ -138,7 +141,7 @@ export const PhoneInputWrapper = styled.div`
 	transition: background-color 0.3s ease;
 	&:focus-within {
 		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
-		${PrefixSelector}, ${PhoneInputField} {
+		${PrefixList}, ${PhoneInputField} {
 			border: none;
 			background-color: ${({ theme }) => theme.colors.inputBackground};
 		}

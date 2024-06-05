@@ -9,7 +9,6 @@ const themes = {
 	greenDark,
 };
 
-
 export function ThemePicker({
 	setTheme,
 	updateThemeInLocalStorage,
@@ -29,7 +28,7 @@ export function ThemePicker({
 				setSelectedTheme('default');
 			}}
 		>
-			<Option value='default' disabled selected={selectedTheme}>
+			<Option value='default' disabled>
 				Obecna skórka: {localStorage.getItem('themeName')}
 			</Option>
 			{Object.keys(themes).map((themeName) => (
