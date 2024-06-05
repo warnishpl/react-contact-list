@@ -1,9 +1,14 @@
 import { InputWrapper, Input } from './SearchInput.styles.js';
 
-export function SearchInput() {
+export function SearchInput({ searchValue, setSearchValue }) {
 	return (
 		<InputWrapper>
-			<Input type='search' placeholder='Wyszukaj kontakt' />
+			<Input
+				defaultValue={searchValue}
+				onChange={(e) => setSearchValue(e.target.value)}
+				type='search'
+				placeholder='Wyszukaj kontakt'
+			/>
 		</InputWrapper>
 	);
 }

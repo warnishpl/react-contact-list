@@ -80,7 +80,6 @@ function App() {
 			picture: 'https://randomuser.me/api/portraits/med/men/3.jpg',
 		},
 	]);
-	// return <Tasks />;
 
 	if (!localStorage.getItem('contacts')) {
 		localStorage.setItem('contacts', JSON.stringify(contactsList)); // docelowo JSON.stringify([]]))
@@ -105,6 +104,9 @@ function App() {
 	function updateThemeNameInLocalStorage(themeName) {
 		localStorage.setItem('themeName', JSON.stringify(themeName));
 	}
+
+	const [searchValue, setSearchValue] = useState('');
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Main>
@@ -114,10 +116,14 @@ function App() {
 					updateThemeNameInLocalStorage={updateThemeNameInLocalStorage}
 				></ThemePicker>
 				<SetGlobalStyle />
-				<SearchInput />
+				<SearchInput
+					searchValue={searchValue}
+					setSearchValue={setSearchValue}
+				/>
 				<AddContactButton onClick={handleAddContactButtonClick} />
 				<ContactsHeader />
 				<ContactItemsMap
+					searchValue={searchValue}
 					contactsList={contactsList}
 					setContactsList={setContactsList}
 					updateContactsInLocalStorage={updateContactsInLocalStorage}
