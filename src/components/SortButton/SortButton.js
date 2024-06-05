@@ -2,9 +2,10 @@ import { ReactComponent as SortAzIcon } from '../../assets/sort-ascending-letter
 // import { ReactComponent as SortZaIcon } from '../../assets/sort-descending-letters.svg';
 import { ButtonWrapper, Button } from './SortButton.styles.js';
 
-export function SortButton() {
+export function SortButton({ setIsAscending, isAscending }) {
+
 	return (
-		<ButtonWrapper>
+		<ButtonWrapper onClick={() => setIsAscending(!isAscending)}>
 			<Button>
 				<SortAzIcon />
 			</Button>

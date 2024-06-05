@@ -106,6 +106,17 @@ function App() {
 	}
 
 	const [searchValue, setSearchValue] = useState('');
+	const [isAscending, setIsAscending] = useState(true);
+
+	function debounce(func, timeout = 300) {
+		let timer;
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				func.apply(this, args);
+			}, timeout);
+		};
+	}
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -118,11 +129,15 @@ function App() {
 				<SetGlobalStyle />
 				<SearchInput
 					searchValue={searchValue}
-					setSearchValue={setSearchValue}
+					setSearchValue={debounce(setSearchValue)}
 				/>
 				<AddContactButton onClick={handleAddContactButtonClick} />
-				<ContactsHeader />
+				<ContactsHeader
+					isAscending={isAscending}
+					setIsAscending={setIsAscending}
+				/>
 				<ContactItemsMap
+					isAscending={isAscending}
 					searchValue={searchValue}
 					contactsList={contactsList}
 					setContactsList={setContactsList}
