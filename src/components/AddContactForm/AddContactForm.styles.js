@@ -83,15 +83,29 @@ export const InputTitle = styled.div`
 		padding-left: 10px;
 	}
 `;
-export const ImgInput = styled.input`
+
+export const ImagePreview = styled.div`
+	position: relative;
 	width: 100px;
 	height: 100px;
+	background-color: rgba(0, 0, 0, 0.4);
+	background-size: cover;
+	background-position: center;
 	border-radius: 50%;
-	background-color: ${({ theme }) => theme.colors.inputBorder};
+	cursor: pointer;
+`;
+export const ImgInput = styled.input`
+	position: absolute;
+	opacity: 0.1; //0
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	border-radius: 50%;
+	background-color: red;
 `;
 export const NameInputField = styled.input`
 	border-radius: 10px;
-	width: 240px;
+	width: 250px;
 	height: 50px;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -116,17 +130,21 @@ export const PrefixList = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 20%;
+	padding: 0 0 0 8px;
 	border-bottom-left-radius: 10px;
 	border-top-left-radius: 10px;
+	font-size: 12px;
 	${ChldrensOfPhoneInputWrapper}
+	p {
+		padding-right: 3px;
+	}
 `;
 export const PhoneInputField = styled.input`
-	width: 80%;
+	width: 100%;
 	border-bottom-right-radius: 10px;
 	border-top-right-radius: 10px;
-	padding-left: 10px;
-	padding-right: 20px;
+	padding-left: 5px;
+	padding-right: 10px;
 	${ChldrensOfPhoneInputWrapper}
 `;
 export const PhoneInputWrapper = styled.div`
@@ -134,7 +152,7 @@ export const PhoneInputWrapper = styled.div`
 	overflow: hidden;
 	justify-content: flex-start;
 	border-radius: 10px;
-	width: 240px;
+	width: 250px;
 	height: 50px;
 	border: 1px solid ${({ theme }) => theme.colors.inputBorder};
 	background-color: ${({ theme }) => theme.colors.background};

@@ -2,18 +2,26 @@ import { useState } from 'react';
 import { countries } from '../../helpers/countries';
 import { Wrapper, Li } from './PrefixLiMap.styles.js';
 
-export function PrefixLiMap({ setIsDropdownShown, setPhoneValue }) {
+export function PrefixLiMap({
+	setIsDropdownShown,
+	setPhoneLengthValue,
+	setPrefixValue,
+}) {
 	const [isFlagSelected, setIsFlagSelected] = useState(false);
-	function flagHandler(phone) {
+	function flagHandler(phone, phoneLength) {
 		setIsFlagSelected(!isFlagSelected);
 		setIsDropdownShown(false);
-		setPhoneValue(phone);
+		setPrefixValue(phone);
+		setPhoneLengthValue(phoneLength);
 	}
 	return (
 		<Wrapper>
 			<ul>
 				{countries.map((country) => (
-					<Li key={country.flag} onClick={() => flagHandler(country.phone)}>
+					<Li
+						key={country.flag}
+						onClick={() => flagHandler(country.phone, country.phoneLength)}
+					>
 						<img
 							src={`../../assets/flags/${country.flag}.png`}
 							alt={country.label}

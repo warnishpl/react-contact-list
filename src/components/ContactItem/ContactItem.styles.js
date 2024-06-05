@@ -52,6 +52,8 @@ export const PictureWrapper = styled.div`
 	grid-column: picture-left / picture-right;
 	grid-row: top / bottom;
 	img {
+		width: 72px;
+		height: 72px;
 		border-radius: 50%;
 	}
 	${media.lg`
