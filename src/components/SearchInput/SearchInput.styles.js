@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import media from '../../styles/media';
 
 export const InputWrapper = styled.div`
-	position: sticky;
-	top: 0px;
 	width: -webkit-fill-available;
 	min-width: 195px;
 	display: flex;

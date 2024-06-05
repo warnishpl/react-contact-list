@@ -4,18 +4,19 @@ import { ContactsWrapper } from './ContactItemsMap.styles.js';
 export function ContactItemsMap({
 	contactsList,
 	setContactsList,
-	updateLocalStorage,
+	updateContactsInLocalStorage,
 }) {
 	return (
 		<ContactsWrapper>
 			{contactsList.map((element) => (
 				<ContactItem
 					setContactsList={setContactsList}
-					updateLocalStorage={updateLocalStorage}
+					updateContactsInLocalStorage={updateContactsInLocalStorage}
 					personalData={element}
 					id={element.id}
 				/>
 			))}
+			
 		</ContactsWrapper>
 	);
 }

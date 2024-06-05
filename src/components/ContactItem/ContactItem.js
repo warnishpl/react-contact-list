@@ -14,7 +14,7 @@ export const ContactItem = ({
 	personalData,
 	setContactsList,
 	id,
-	updateLocalStorage,
+	updateContactsInLocalStorage,
 }) => {
 	const { name, phone, picture } = personalData;
 	const [isExtended, setIsExtended] = useState(false);
@@ -34,7 +34,7 @@ export const ContactItem = ({
 					<DeleteButton
 						id={id}
 						setContactsList={setContactsList}
-						updateLocalStorage={updateLocalStorage}
+						updateContactsInLocalStorage={updateContactsInLocalStorage}
 					/>
 				</DeleteIconWrapper>
 

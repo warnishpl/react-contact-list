@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { blueDark } from './styles/theme.js';
 import { SetGlobalStyle } from './styles/GlobalStyles.js';
+import { ThemePicker } from './components/ThemePicker/ThemePicker.js';
 // import { Tasks } from './components/Tasks/Tasks';
 
 function App() {
@@ -82,21 +83,36 @@ function App() {
 	// return <Tasks />;
 
 	if (!localStorage.getItem('contacts')) {
-		localStorage.setItem('contacts', JSON.stringify([])); // JSON.stringify([]]))
+		localStorage.setItem('contacts', JSON.stringify(contactsList)); // docelowo JSON.stringify([]]))
 	}
+	if (!localStorage.getItem('theme')) {
+		localStorage.setItem('theme', JSON.stringify(blueDark));
+		localStorage.setItem('themeName', JSON.stringify('blueDark'));
+	}
+
+	const [theme, setTheme] = useState(JSON.parse(localStorage.getItem('theme')));
 
 	useEffect(() => {
-		const localstorage = JSON.parse(localStorage.getItem('contacts'));
-		setContactsList(localstorage);
+		const localstorageContacts = JSON.parse(localStorage.getItem('contacts'));
+		setContactsList(localstorageContacts);
 	}, []); //[] <= wywola sie przy 1. renderze
-	function updateLocalStorage(arr) {
+	function updateContactsInLocalStorage(arr) {
 		localStorage.setItem('contacts', JSON.stringify(arr));
 	}
-
-	
+	function updateThemeInLocalStorage(theme) {
+		localStorage.setItem('theme', JSON.stringify(theme));
+	}
+	function updateThemeNameInLocalStorage(themeName) {
+		localStorage.setItem('themeName', JSON.stringify(themeName));
+	}
 	return (
-		<ThemeProvider theme={blueDark}>
+		<ThemeProvider theme={theme}>
 			<Main>
+				<ThemePicker
+					setTheme={setTheme}
+					updateThemeInLocalStorage={updateThemeInLocalStorage}
+					updateThemeNameInLocalStorage={updateThemeNameInLocalStorage}
+				></ThemePicker>
 				<SetGlobalStyle />
 				<SearchInput />
 				<AddContactButton onClick={handleAddContactButtonClick} />
@@ -104,14 +120,14 @@ function App() {
 				<ContactItemsMap
 					contactsList={contactsList}
 					setContactsList={setContactsList}
-					updateLocalStorage={updateLocalStorage}
+					updateContactsInLocalStorage={updateContactsInLocalStorage}
 				/>
 				{isAddContactButtonClicked && (
 					<AddContactForm
 						contactsList={contactsList}
 						setContactsList={setContactsList}
 						onClose={handleAddContactButtonClick}
-						updateLocalStorage={updateLocalStorage}
+						updateContactsInLocalStorage={updateContactsInLocalStorage}
 					/>
 				)}
 			</Main>

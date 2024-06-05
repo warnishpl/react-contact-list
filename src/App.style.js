@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import media from './styles/media';
 
 export const Main = styled.main`
+max-height: 100vh;
 	display: grid;
 	grid-template-columns: [margin-left] 30px [content-start] 1fr [content-mid] auto [content-end] 30px [margin-right];
 	grid-template-rows: [margin-top] 30px [content-top] 70px [header-top] auto [header-bottom] auto [content-mid] 1fr [content-bottom] 30px [margin-bottom];

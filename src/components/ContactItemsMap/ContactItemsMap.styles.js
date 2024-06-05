@@ -3,6 +3,7 @@ import media from '../../styles/media';
 
 export const ContactsWrapper = styled.div`
 	min-width: 290px;
+	overflow: auto;
 	grid-column: content-start / content-end;
 	grid-row: content-mid / content-bottom;
 	display: flex;

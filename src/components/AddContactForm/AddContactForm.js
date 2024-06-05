@@ -15,9 +15,8 @@ import { useState } from 'react';
 
 export function AddContactForm({
 	onClose,
-	contactsList,
 	setContactsList,
-	updateLocalStorage,
+	updateContactsInLocalStorage,
 }) {
 	const [nameValue, setNameValue] = useState('');
 	const [phoneValue, setPhoneValue] = useState('');
@@ -39,7 +38,7 @@ export function AddContactForm({
 				},
 				...prev,
 			];
-			updateLocalStorage(updatedContactsList);
+			updateContactsInLocalStorage(updatedContactsList);
 			return updatedContactsList;
 		});
 	}

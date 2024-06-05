@@ -3,9 +3,7 @@ import media from '../../styles/media';
 
 
 export const Wrapper = styled.div`
-	position: sticky;
 	display: flex;
-	top: 0px;
 	height: 70px;
 	grid-row: content-top / header-top;
 	grid-column: content-mid / content-end;
