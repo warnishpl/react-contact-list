@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import media from '../../styles/media';
 
 export const Background = styled.div`
@@ -55,7 +55,7 @@ export const IconWrapper = styled.div`
 `;
 export const Header = styled.div`
 	width: 100%;
-	padding: 20px ;
+	padding: 20px;
 	justify-content: center;
 	display: grid;
 	grid-template-columns: 1fr auto 1fr;
@@ -89,7 +89,7 @@ export const ImgInput = styled.input`
 	border-radius: 50%;
 	background-color: ${({ theme }) => theme.colors.inputBorder};
 `;
-export const Input = styled.input`
+export const NameInputField = styled.input`
 	border-radius: 10px;
 	width: 240px;
 	height: 50px;
@@ -102,5 +102,45 @@ export const Input = styled.input`
 		border: none;
 		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
 		background-color: ${({ theme }) => theme.colors.inputBackground};
+	}
+`;
+const ChldrensOfPhoneInputWrapper = css`
+	background-color: ${({ theme }) => theme.colors.background};
+	border: none;
+	transition: background-color 0.3s ease;
+	&:focus-within {
+		outline: none;
+	}
+`;
+export const PrefixSelector = styled.select`
+	width: 20%;
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	${ChldrensOfPhoneInputWrapper}
+`;
+export const PhoneInputField = styled.input`
+	width: 80%;
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+	padding-left: 10px;
+	padding-right: 20px;
+	${ChldrensOfPhoneInputWrapper}
+`;
+export const PhoneInputWrapper = styled.div`
+	display: flex;
+	overflow: hidden;
+	justify-content: flex-start;
+	border-radius: 10px;
+	width: 240px;
+	height: 50px;
+	border: 1px solid ${({ theme }) => theme.colors.inputBorder};
+	background-color: ${({ theme }) => theme.colors.background};
+	transition: background-color 0.3s ease;
+	&:focus-within {
+		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
+		${PrefixSelector}, ${PhoneInputField} {
+			border: none;
+			background-color: ${({ theme }) => theme.colors.inputBackground};
+		}
 	}
 `;

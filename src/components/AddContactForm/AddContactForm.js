@@ -5,7 +5,10 @@ import {
 	Header,
 	IconWrapper,
 	ImgInput,
-	Input,
+	NameInputField,
+	PhoneInputWrapper,
+	PrefixSelector,
+	PhoneInputField,
 	InputTitle,
 	InputsWrapper,
 } from '../AddContactForm/AddContactForm.styles.js';
@@ -55,19 +58,24 @@ export function AddContactForm({
 						<p>Dodaj kontakt</p>
 					</Header>
 					<InputsWrapper>
-						
 						<ImgInput type='file' accept='image/*'></ImgInput>
 						<InputTitle>
 							<p>Nazwa</p>
 						</InputTitle>
-						<Input defaultValue={nameValue} onChange={handlerNameValue}></Input>
+						<NameInputField
+							defaultValue={nameValue}
+							onChange={handlerNameValue}
+						></NameInputField>
 						<InputTitle>
 							<p>Numer telefonu</p>
 						</InputTitle>
-						<Input
-							defaultValue={phoneValue}
-							onChange={handlerPhoneValue}
-						></Input>
+						<PhoneInputWrapper>
+							<PrefixSelector></PrefixSelector>
+							<PhoneInputField
+								defaultValue={phoneValue}
+								onChange={handlerPhoneValue}
+							></PhoneInputField>
+						</PhoneInputWrapper>
 					</InputsWrapper>
 					<SaveButton type='submit' onClick={addNewContact}></SaveButton>
 				</AddContactBox>
