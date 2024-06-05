@@ -16,7 +16,7 @@ export const ContactItem = ({
 	id,
 	updateContactsInLocalStorage,
 }) => {
-	const { name, phone, picture } = personalData;
+	const { name, prefix, phone, picture } = personalData;
 	const [isExtended, setIsExtended] = useState(false);
 	function handlerIsExtended() {
 		setIsExtended(!isExtended);
@@ -39,7 +39,7 @@ export const ContactItem = ({
 				</DeleteIconWrapper>
 
 				<PhoneWrapper>
-					<p>{phone}</p>
+					<p>{prefix} {phone}</p>
 					<CopyButton textToCopy={phone} />
 				</PhoneWrapper>
 			</PersonalDataWrapper>

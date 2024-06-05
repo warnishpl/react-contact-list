@@ -71,6 +71,7 @@ export function AddContactForm({
 				{
 					id: crypto.randomUUID(),
 					name: nameValue,
+					prefix: prefixValue,
 					phone: phoneValue,
 					picture: imageSrc || defaultAvatar,
 				},
