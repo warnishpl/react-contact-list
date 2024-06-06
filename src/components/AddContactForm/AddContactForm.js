@@ -31,6 +31,8 @@ export function AddContactForm({
 	const [prefixValue, setPrefixValue] = useState('+48');
 	const [phoneLengthValue, setPhoneLengthValue] = useState(9);
 	const [imageSrc, setImageSrc] = useState(null);
+	const [nameError, setNameError] = useState(false);
+	const [phoneError, setPhoneError] = useState(false);
 
 	const handleFileChange = (event) => {
 		const file = event.target.files[0];
@@ -53,19 +55,32 @@ export function AddContactForm({
 	function handlerDropdown() {
 		setIsDropdownShown(!isDropdownShown);
 	}
+	function validateForm() {
+		const reg = new RegExp(`^[0-9+]{${phoneLengthValue}}$`);
+		if (nameValue === '') {
+			setNameError(true);
+			setTimeout(() => {
+				setNameError(false);
+			}, 1000);
+			return;
+		} else if (!reg.test(phoneValue)) {
+			setPhoneError(true);
+			setTimeout(() => {
+				setPhoneError(false);
+			}, 1000);
+			return;
+		} else addNewContact();
+	}
+	function resetValues() {
+		setNameValue(''); //obsluzyc przez event?
+		setPhoneValue('');
+		setPrefixValue('+48');
+		setPhoneLengthValue(9);
+		setImageSrc(null);
+		setNameError(false);
+		setPhoneError(false);
+	}
 	function addNewContact() {
-		if (nameValue === '') return;
-
-		function validatePhone(tel) {
-			const reg = new RegExp(`^[0-9+]{${phoneLengthValue}}$`);
-			if (reg.test(tel)) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-		if (validatePhone(phoneValue)) return;
-
 		setContactsList((prev) => {
 			const updatedContactsList = [
 				{
@@ -78,12 +93,7 @@ export function AddContactForm({
 				...prev,
 			];
 			updateContactsInLocalStorage(updatedContactsList);
-			//reset
-			setNameValue('');
-			setPhoneValue('');
-			setPrefixValue('+48');
-			setPhoneLengthValue(9);
-			setImageSrc(null);
+			resetValues(); //reset
 			return updatedContactsList;
 		});
 	}
@@ -110,6 +120,7 @@ export function AddContactForm({
 						></ImgInput>
 						<InputTitle>
 							<p>Nazwa</p>
+							{nameError && <p style={{ color: 'red' }}>Wprowadź nazwe</p>}
 						</InputTitle>
 						<NameInputField
 							defaultValue={nameValue}
@@ -117,6 +128,9 @@ export function AddContactForm({
 						></NameInputField>
 						<InputTitle>
 							<p>Numer telefonu</p>
+							{phoneError && (
+								<p style={{ color: 'red' }}>Błędny numer telefonu</p>
+							)}
 						</InputTitle>
 						<PhoneInputWrapper>
 							<PrefixList onClick={handlerDropdown}>
@@ -125,7 +139,7 @@ export function AddContactForm({
 									style={{
 										width: '16px',
 										transition: 'transform 0.3s ease-out',
-										transform: isDropdownShown ? 'rotateX(180deg)' : 'none',
+										transform: isDropdownShown ? 'rotateX(180deg)' : 'none', // jak ostylowac nie-in-line-owo element, ktory nie jest z styled-components>
 									}}
 								/>
 							</PrefixList>
@@ -133,21 +147,21 @@ export function AddContactForm({
 								defaultValue={phoneValue}
 								onChange={handlerPhoneValue}
 								placeholder={`Wprowadz ${phoneLengthValue}-cyfrowy numer`}
-								pattern={`[0-9]${phoneLengthValue}`} // ??????
+								pattern={`[0-9]${phoneLengthValue}`} // czy to wgl ma sens w react?
 								required
 							></PhoneInputField>
+							{isDropdownShown && (
+								<PrefixLiMap
+									setPhoneLengthValue={setPhoneLengthValue}
+									setPrefixValue={setPrefixValue}
+									setIsDropdownShown={setIsDropdownShown}
+									setPhoneValue={setPhoneValue}
+								></PrefixLiMap>
+							)}
 						</PhoneInputWrapper>
-						{isDropdownShown && (
-							<PrefixLiMap
-								setPhoneLengthValue={setPhoneLengthValue}
-								setPrefixValue={setPrefixValue}
-								setIsDropdownShown={setIsDropdownShown}
-								setPhoneValue={setPhoneValue}
-							></PrefixLiMap>
-						)}
 					</InputsWrapper>
 
-					<SaveButton type='submit' onClick={addNewContact}></SaveButton>
+					<SaveButton type='submit' onClick={validateForm}></SaveButton>
 				</AddContactBox>
 			</AddContactFormWrapper>
 		</>

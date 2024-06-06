@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	position: fixed;
-    top: 0;
-	background-color: rgba(255,0,0,0.2);
+    bottom: 31px;
+	background-color: ${({ theme }) => theme.colors.background};
 	height: 100px;
 	width: 250px;
 	overflow: auto;

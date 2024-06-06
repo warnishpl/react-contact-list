@@ -77,10 +77,16 @@ export const InputsWrapper = styled.div`
 `;
 export const InputTitle = styled.div`
 	align-self: start;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 	font-size: 14px;
 	padding: 20px 0 5px 0;
-	p {
+	& > p {
 		padding-left: 10px;
+	}
+	& > p + p {
+		font-size: 12px;
 	}
 `;
 
