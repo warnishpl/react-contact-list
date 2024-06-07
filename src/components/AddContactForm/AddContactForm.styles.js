@@ -89,9 +89,15 @@ export const InputTitle = styled.div`
 		font-size: 12px;
 	}
 `;
-
-export const ImagePreview = styled.div`
+export const ImageWrapper = styled.div`
+	height: 100px;
+	width: 100px;
 	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+`;
+export const ImagePreview = styled.div`
+	position: absolute;
 	width: 100px;
 	height: 100px;
 	background-color: rgba(0, 0, 0, 0.4);
@@ -103,11 +109,11 @@ export const ImagePreview = styled.div`
 export const ImgInput = styled.input`
 	position: absolute;
 	opacity: 0.1; //0
-	width: 100px;
-	height: 100px;
+	width: 200px;
+	height: 200px;
 	cursor: pointer;
 	border-radius: 50%;
-	background-color: red;
+	transform: translate(-50%, -50%);
 `;
 export const NameInputField = styled.input`
 	border-radius: 10px;
@@ -155,7 +161,7 @@ export const PhoneInputField = styled.input`
 `;
 export const PhoneInputWrapper = styled.div`
 	display: flex;
-	overflow: hidden;
+	position: relative;
 	justify-content: flex-start;
 	border-radius: 10px;
 	width: 250px;

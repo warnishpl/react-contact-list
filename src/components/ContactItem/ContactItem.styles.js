@@ -16,8 +16,8 @@ export const ContactItemWrapper = styled.div`
 		&:hover {
 			background-color: ${({ theme }) => theme.colors.itemBackgroundHover};
 		}
-		${({ isExtended }) =>
-			isExtended &&
+		${({ $isExtended }) =>
+			$isExtended &&
 			css`
 				height: 120px;
 				background-color: ${({ theme }) => theme.colors.button};
@@ -46,6 +46,12 @@ export const PersonalDataWrapper = styled.div`
 			)
 			[phone-right] 0[del-left] 50px [del-right];
 		grid-template-rows: [top] 1fr [bottom];
+		${({ $isExtended }) =>
+			$isExtended &&
+			css`
+				grid-template-columns: [picture-left] 72px [picture-right]20px[name-left] auto [name-right] 0 [del-left]auto[del-right];
+				grid-template-rows: [top] 1fr [mid] 1fr [bottom];
+			`}
 	`}
 `;
 export const PictureWrapper = styled.div`

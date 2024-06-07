@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { countries } from '../../helpers/countries';
 import { Wrapper, Li } from './PrefixLiMap.styles.js';
+import flags from '../../utils/functions/flags.js';
 
 export function PrefixLiMap({
 	setIsDropdownShown,
@@ -23,9 +24,9 @@ export function PrefixLiMap({
 						onClick={() => flagHandler(country.phone, country.phoneLength)}
 					>
 						<img
-							src={`../../assets/flags/${country.flag}.png`}
+							src={flags[country.flag]}
 							alt={country.label}
-							style={{ width: '20px', height: '20px' }}
+							style={{ height: '20px' }}
 						/>
 						{`${country.phone} ${country.label}`}
 					</Li>

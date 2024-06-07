@@ -12,6 +12,7 @@ import {
 	PhoneInputField,
 	InputTitle,
 	InputsWrapper,
+	ImageWrapper,
 } from '../AddContactForm/AddContactForm.styles.js';
 import { ReactComponent as BackIcon } from '../../assets/arrow-left.svg';
 import { SaveButton } from '../SaveButton/SaveButton';
@@ -19,6 +20,8 @@ import { useState } from 'react';
 import { PrefixLiMap } from '../PrefixLiMap/PrefixLiMap.js';
 import { ReactComponent as Chevron } from '../../assets/chevron-down.svg';
 import defaultAvatar from '../../assets/default_avatar_black.jpg';
+
+// const ChevronStyled = styled(Chevron)
 
 export function AddContactForm({
 	onClose,
@@ -72,7 +75,7 @@ export function AddContactForm({
 		} else addNewContact();
 	}
 	function resetValues() {
-		setNameValue(''); //obsluzyc przez event?
+		setNameValue('');
 		setPhoneValue('');
 		setPrefixValue('+48');
 		setPhoneLengthValue(9);
@@ -110,20 +113,22 @@ export function AddContactForm({
 						<p>Dodaj kontakt</p>
 					</Header>
 					<InputsWrapper>
-						<ImagePreview
-							style={{ backgroundImage: `url(${imageSrc})` }}
-						></ImagePreview>
-						<ImgInput
-							type='file'
-							accept='image/*'
-							onChange={handleFileChange}
-						></ImgInput>
+						<ImageWrapper>
+							<ImagePreview
+								style={{ backgroundImage: `url(${imageSrc})` }}
+							></ImagePreview>
+							<ImgInput
+								type='file'
+								accept='image/*'
+								onChange={handleFileChange}
+							></ImgInput>
+						</ImageWrapper>
 						<InputTitle>
 							<p>Nazwa</p>
 							{nameError && <p style={{ color: 'red' }}>Wprowadź nazwe</p>}
 						</InputTitle>
 						<NameInputField
-							defaultValue={nameValue}
+							value={nameValue}
 							onChange={handlerNameValue}
 						></NameInputField>
 						<InputTitle>
@@ -144,11 +149,9 @@ export function AddContactForm({
 								/>
 							</PrefixList>
 							<PhoneInputField
-								defaultValue={phoneValue}
+								value={phoneValue}
 								onChange={handlerPhoneValue}
 								placeholder={`Wprowadz ${phoneLengthValue}-cyfrowy numer`}
-								pattern={`[0-9]${phoneLengthValue}`} // czy to wgl ma sens w react?
-								required
 							></PhoneInputField>
 							{isDropdownShown && (
 								<PrefixLiMap

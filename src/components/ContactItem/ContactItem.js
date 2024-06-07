@@ -22,8 +22,8 @@ export const ContactItem = ({
 		setIsExtended(!isExtended);
 	}
 	return (
-		<ContactItemWrapper onClick={handlerIsExtended} isExtended={isExtended}>
-			<PersonalDataWrapper>
+		<ContactItemWrapper onClick={handlerIsExtended} $isExtended={isExtended}>
+			<PersonalDataWrapper $isExtended={isExtended}>
 				<PictureWrapper>
 					<img src={picture} alt='zdjęcie profilowe'></img>
 				</PictureWrapper>
