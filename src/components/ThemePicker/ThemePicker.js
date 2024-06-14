@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Select, Option } from './ThemePicker.styles.js';
 import { blue, blueDark, green, greenDark } from '../../styles/theme.js';
+import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions.js';
 
 const themes = {
 	blue,
@@ -11,8 +12,6 @@ const themes = {
 
 export function ThemePicker({
 	setTheme,
-	updateThemeInLocalStorage,
-	updateThemeNameInLocalStorage,
 }) {
 	const [selectedTheme, setSelectedTheme] = useState('default');
 
@@ -23,8 +22,8 @@ export function ThemePicker({
 				const newTheme = e.target.value;
 				setSelectedTheme(newTheme);
 				setTheme(themes[newTheme]);
-				updateThemeInLocalStorage(themes[newTheme]);
-				updateThemeNameInLocalStorage(newTheme);
+				setLocalStorgeValue('theme', themes[newTheme]);
+				setLocalStorgeValue('themeName',newTheme);
 				setSelectedTheme('default');
 			}}
 		>

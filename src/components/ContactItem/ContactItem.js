@@ -10,36 +10,29 @@ import {
 	DeleteIconWrapper,
 } from './ContactItem.styles.js';
 
-export const ContactItem = ({
-	personalData,
-	setContactsList,
-	id,
-	updateContactsInLocalStorage,
-}) => {
+export const ContactItem = ({ personalData, setContactsList, id }) => {
 	const { name, prefix, phone, picture } = personalData;
 	const [isExtended, setIsExtended] = useState(false);
 	function handlerIsExtended() {
 		setIsExtended(!isExtended);
 	}
 	return (
-		<ContactItemWrapper onClick={handlerIsExtended} isExtended={isExtended}>
-			<PersonalDataWrapper>
-				<PictureWrapper>
+		<ContactItemWrapper onClick={handlerIsExtended} $isExtended={isExtended}>
+			<PersonalDataWrapper $isExtended={isExtended}>
+				<PictureWrapper $isExtended={isExtended}>
 					<img src={picture} alt='zdjęcie profilowe'></img>
 				</PictureWrapper>
-				<NameWrapper>
+				<NameWrapper $isExtended={isExtended}>
 					<p>{name}</p>
 				</NameWrapper>
 				<DeleteIconWrapper>
-					<DeleteButton
-						id={id}
-						setContactsList={setContactsList}
-						updateContactsInLocalStorage={updateContactsInLocalStorage}
-					/>
+					<DeleteButton id={id} setContactsList={setContactsList} />
 				</DeleteIconWrapper>
 
-				<PhoneWrapper>
-					<p>{prefix} {phone}</p>
+				<PhoneWrapper $isExtended={isExtended}>
+					<p>
+						{prefix} {phone}
+					</p>
 					<CopyButton textToCopy={phone} />
 				</PhoneWrapper>
 			</PersonalDataWrapper>

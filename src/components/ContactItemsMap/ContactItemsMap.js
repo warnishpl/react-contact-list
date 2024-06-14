@@ -4,7 +4,6 @@ import { ContactsWrapper } from './ContactItemsMap.styles.js';
 export function ContactItemsMap({
 	contactsList,
 	setContactsList,
-	updateContactsInLocalStorage,
 	searchValue,
 	isAscending,
 }) {
@@ -29,7 +28,6 @@ export function ContactItemsMap({
 			{sortedContactsList.map((element) => (
 				<ContactItem
 					setContactsList={setContactsList}
-					updateContactsInLocalStorage={updateContactsInLocalStorage}
 					personalData={element}
 					id={element.id} // jak zastapic ID na key
 					key={element.id} // w DeleteButton.js ??

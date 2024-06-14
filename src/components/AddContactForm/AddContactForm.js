@@ -12,19 +12,23 @@ import {
 	PhoneInputField,
 	InputTitle,
 	InputsWrapper,
+	ImageWrapper,
+	ChevronStyled,
+	AvatarSign,
+	DeleteAvatarIconStyled,
+	AddAvatarIconStyled,
+	RedP,
 } from '../AddContactForm/AddContactForm.styles.js';
 import { ReactComponent as BackIcon } from '../../assets/arrow-left.svg';
 import { SaveButton } from '../SaveButton/SaveButton';
-import { useState } from 'react';
-import { PrefixLiMap } from '../PrefixLiMap/PrefixLiMap.js';
-import { ReactComponent as Chevron } from '../../assets/chevron-down.svg';
+import { useRef, useState } from 'react';
+import { CountryDropdownMenu } from '../CountryDropdownMenu/CountryDropdownMenu.js';
 import defaultAvatar from '../../assets/default_avatar_black.jpg';
+import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions.js';
+import {sizes} from '../../styles/media.js';
 
-export function AddContactForm({
-	onClose,
-	setContactsList,
-	updateContactsInLocalStorage,
-}) {
+export function AddContactForm({ onClose, setContactsList }) {
+	const inputRef = useRef(null);
 	const [nameValue, setNameValue] = useState('');
 	const [phoneValue, setPhoneValue] = useState('');
 	const [isDropdownShown, setIsDropdownShown] = useState(false);
@@ -55,6 +59,10 @@ export function AddContactForm({
 	function handlerDropdown() {
 		setIsDropdownShown(!isDropdownShown);
 	}
+	function handleAddAvatarIconClick() {
+		console.log(inputRef.current);
+		inputRef.current.click();
+	}
 	function validateForm() {
 		const reg = new RegExp(`^[0-9+]{${phoneLengthValue}}$`);
 		if (nameValue === '') {
@@ -72,13 +80,14 @@ export function AddContactForm({
 		} else addNewContact();
 	}
 	function resetValues() {
-		setNameValue(''); //obsluzyc przez event?
+		setNameValue('');
 		setPhoneValue('');
 		setPrefixValue('+48');
 		setPhoneLengthValue(9);
 		setImageSrc(null);
 		setNameError(false);
 		setPhoneError(false);
+		if (window.innerWidth <= sizes.lg) onClose(false);
 	}
 	function addNewContact() {
 		setContactsList((prev) => {
@@ -92,7 +101,7 @@ export function AddContactForm({
 				},
 				...prev,
 			];
-			updateContactsInLocalStorage(updatedContactsList);
+			setLocalStorgeValue('contacts', updatedContactsList);
 			resetValues(); //reset
 			return updatedContactsList;
 		});
@@ -110,53 +119,52 @@ export function AddContactForm({
 						<p>Dodaj kontakt</p>
 					</Header>
 					<InputsWrapper>
-						<ImagePreview
-							style={{ backgroundImage: `url(${imageSrc})` }}
-						></ImagePreview>
-						<ImgInput
-							type='file'
-							accept='image/*'
-							onChange={handleFileChange}
-						></ImgInput>
+						<ImageWrapper>
+							<ImagePreview $imageSrc={imageSrc}></ImagePreview>
+							<ImgInput
+								ref={inputRef}
+								type='file'
+								accept='image/*'
+								onChange={handleFileChange}
+							></ImgInput>
+						</ImageWrapper>
+						<AvatarSign as='button'>
+							{!imageSrc ? (
+								<AddAvatarIconStyled onClick={handleAddAvatarIconClick} />
+							) : (
+								<DeleteAvatarIconStyled onClick={() => setImageSrc(null)} />
+							)}
+						</AvatarSign>
 						<InputTitle>
 							<p>Nazwa</p>
-							{nameError && <p style={{ color: 'red' }}>Wprowadź nazwe</p>}
+							{nameError && <RedP>Wprowadź nazwe</RedP>}
 						</InputTitle>
 						<NameInputField
-							defaultValue={nameValue}
+							value={nameValue}
 							onChange={handlerNameValue}
+							placeholder={`Wprowadz nazwe kontaktu`}
 						></NameInputField>
 						<InputTitle>
 							<p>Numer telefonu</p>
-							{phoneError && (
-								<p style={{ color: 'red' }}>Błędny numer telefonu</p>
-							)}
+							{phoneError && <RedP>Błędny numer telefonu</RedP>}
 						</InputTitle>
-						<PhoneInputWrapper>
+						<PhoneInputWrapper $isDropdownShown={isDropdownShown}>
 							<PrefixList onClick={handlerDropdown}>
 								<p>{prefixValue}</p>
-								<Chevron
-									style={{
-										width: '16px',
-										transition: 'transform 0.3s ease-out',
-										transform: isDropdownShown ? 'rotateX(180deg)' : 'none', // jak ostylowac nie-in-line-owo element, ktory nie jest z styled-components>
-									}}
-								/>
+								<ChevronStyled $isDropdownShown={isDropdownShown} />
 							</PrefixList>
 							<PhoneInputField
-								defaultValue={phoneValue}
+								value={phoneValue}
 								onChange={handlerPhoneValue}
 								placeholder={`Wprowadz ${phoneLengthValue}-cyfrowy numer`}
-								pattern={`[0-9]${phoneLengthValue}`} // czy to wgl ma sens w react?
-								required
 							></PhoneInputField>
 							{isDropdownShown && (
-								<PrefixLiMap
+								<CountryDropdownMenu
 									setPhoneLengthValue={setPhoneLengthValue}
 									setPrefixValue={setPrefixValue}
 									setIsDropdownShown={setIsDropdownShown}
 									setPhoneValue={setPhoneValue}
-								></PrefixLiMap>
+								></CountryDropdownMenu>
 							)}
 						</PhoneInputWrapper>
 					</InputsWrapper>
