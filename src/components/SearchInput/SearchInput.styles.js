@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import media from '../../styles/media';
+import searchIcon from '../../assets/search.svg';
 
 export const InputWrapper = styled.div`
 	width: -webkit-fill-available;
@@ -26,7 +27,8 @@ export const Input = styled.input`
 	border: none;
 	font-size: 16px;
 	line-height: 60px;
-	background: url('../../assets/search.svg');
+	color: ${({ theme }) => theme.colors.text};
+	background: url(${searchIcon});
 	background-color: ${({ theme }) => theme.colors.itemBackground};
 	background-position: 10px 50%;
 	background-repeat: no-repeat;

@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components';
 import media from '../../styles/media';
+import defaultAvatar from '../../assets/default_avatar_black.jpg';
+import { ReactComponent as Chevron } from '../../assets/chevron-down.svg';
+import { ReactComponent as DeleteAvatarIcon } from '../../assets/circle-minus.svg';
+import { ReactComponent as AddAvatarIcon } from '../../assets/circle-plus.svg';
 
 export const Background = styled.div`
 	position: fixed;
@@ -105,6 +109,12 @@ export const ImagePreview = styled.div`
 	background-position: center;
 	border-radius: 50%;
 	cursor: pointer;
+	background-image: url(${defaultAvatar});
+	${({ $imageSrc }) =>
+		$imageSrc &&
+		css`
+			background-image: url(${$imageSrc});
+		`}
 `;
 export const ImgInput = styled.input`
 	position: absolute;
@@ -117,13 +127,15 @@ export const ImgInput = styled.input`
 `;
 export const NameInputField = styled.input`
 	border-radius: 10px;
-	width: 250px;
+	width: 260px;
 	height: 50px;
 	padding-left: 20px;
 	padding-right: 20px;
+	color: ${({ theme }) => theme.colors.text};
 	border: 1px solid ${({ theme }) => theme.colors.inputBorder};
 	background-color: ${({ theme }) => theme.colors.background};
 	transition: background-color 0.3s ease;
+	&:hover,
 	&:focus {
 		border: none;
 		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
@@ -146,6 +158,7 @@ export const PrefixList = styled.div`
 	border-bottom-left-radius: 10px;
 	border-top-left-radius: 10px;
 	font-size: 12px;
+	color: ${({ theme }) => theme.colors.text};
 	${ChldrensOfPhoneInputWrapper}
 	p {
 		padding-right: 3px;
@@ -157,6 +170,7 @@ export const PhoneInputField = styled.input`
 	border-top-right-radius: 10px;
 	padding-left: 5px;
 	padding-right: 10px;
+	color: ${({ theme }) => theme.colors.text};
 	${ChldrensOfPhoneInputWrapper}
 `;
 export const PhoneInputWrapper = styled.div`
@@ -164,11 +178,12 @@ export const PhoneInputWrapper = styled.div`
 	position: relative;
 	justify-content: flex-start;
 	border-radius: 10px;
-	width: 250px;
+	width: 260px;
 	height: 50px;
 	border: 1px solid ${({ theme }) => theme.colors.inputBorder};
 	background-color: ${({ theme }) => theme.colors.background};
 	transition: background-color 0.3s ease;
+	&:hover,
 	&:focus-within {
 		outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
 		${PrefixList}, ${PhoneInputField} {
@@ -176,4 +191,44 @@ export const PhoneInputWrapper = styled.div`
 			background-color: ${({ theme }) => theme.colors.inputBackground};
 		}
 	}
+	${({ $isDropdownShown }) =>
+		$isDropdownShown
+			? css`
+					outline: 1px solid ${({ theme }) => theme.colors.inputOutline};
+					background-color: ${({ theme }) => theme.colors.inputBackground};
+			  `
+			: css`
+					outline: none;
+			  `}
+`;
+export const ChevronStyled = styled(Chevron)`
+	width: 16px;
+	transition: transform 0.3s ease-out;
+	${({ $isDropdownShown }) =>
+		$isDropdownShown
+			? css`
+					transform: rotateX(180deg);
+			  `
+			: css`
+					transform: none;
+			  `}
+`;
+export const AvatarSign = styled.div`
+	position: absolute;
+	top: 150px;
+	left: 200px;
+	background-color: #fff;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+export const DeleteAvatarIconStyled = styled(DeleteAvatarIcon)`
+	cursor: pointer;
+`;
+export const AddAvatarIconStyled = styled(AddAvatarIcon)`
+	cursor: pointer;
+`;
+export const RedP = styled.p`
+	color: red;
 `;
