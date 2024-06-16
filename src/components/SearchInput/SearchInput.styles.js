@@ -10,7 +10,6 @@ export const InputWrapper = styled.div`
 	grid-column: content-start / content-mid;
 	grid-row: content-top / header-top;
 	padding-right: 10px;
-	/* background-color: ${({ theme }) => theme.colors.background}; */
 	${media.lg`
 		grid-column: content-mid / content-end;
 		grid-row: content-top / header-top;

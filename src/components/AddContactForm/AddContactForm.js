@@ -21,11 +21,11 @@ import {
 } from '../AddContactForm/AddContactForm.styles.js';
 import { ReactComponent as BackIcon } from '../../assets/arrow-left.svg';
 import { SaveButton } from '../SaveButton/SaveButton';
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { CountryDropdownMenu } from '../CountryDropdownMenu/CountryDropdownMenu.js';
 import defaultAvatar from '../../assets/default_avatar_black.jpg';
 import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions.js';
-import {sizes} from '../../styles/media.js';
+import { sizes } from '../../styles/media.js';
 
 export function AddContactForm({ onClose, setContactsList }) {
 	const inputRef = useRef(null);
@@ -38,48 +38,42 @@ export function AddContactForm({ onClose, setContactsList }) {
 	const [nameError, setNameError] = useState(false);
 	const [phoneError, setPhoneError] = useState(false);
 
-	const handleFileChange = (event) => {
-		const file = event.target.files[0];
-		if (file) {
-			const reader = new FileReader();
+	// TODO: dane z forumlarza wyciągać po kliknięciu przycisku
 
-			reader.onload = (e) => {
-				setImageSrc(e.target.result); // Ustaw stan z wczytanymi danymi pliku
-			};
+	const handleFileChange = useCallback(
+		(event) => {
+			const file = event.target.files[0];
+			if (file) {
+				const reader = new FileReader();
 
-			reader.readAsDataURL(file); // Wczytaj plik jako URL
-		}
-	};
-	function handlerNameValue(event) {
-		setNameValue(event.target.value);
-	}
-	function handlerPhoneValue(event) {
-		setPhoneValue(event.target.value);
-	}
-	function handlerDropdown() {
-		setIsDropdownShown(!isDropdownShown);
-	}
-	function handleAddAvatarIconClick() {
-		console.log(inputRef.current);
+				reader.onload = (e) => {
+					setImageSrc(e.target.result); // Ustaw stan z wczytanymi danymi pliku
+				};
+
+				reader.readAsDataURL(file); // Wczytaj plik jako URL
+			}
+		},
+		[setImageSrc]
+	);
+
+	const handlerNameValue = useCallback(
+		(event) => setNameValue(event.target.value),
+		[]
+	);
+
+	const handlerPhoneValue = useCallback(
+		(event) => setPhoneValue(event.target.value),
+		[]
+	);
+	const handlerDropdown = useCallback(
+		() => setIsDropdownShown((prev) => !prev),
+		[]
+	);
+
+	const handleAddAvatarIconClick = useCallback(() => {
 		inputRef.current.click();
-	}
-	function validateForm() {
-		const reg = new RegExp(`^[0-9+]{${phoneLengthValue}}$`);
-		if (nameValue === '') {
-			setNameError(true);
-			setTimeout(() => {
-				setNameError(false);
-			}, 1000);
-			return;
-		} else if (!reg.test(phoneValue)) {
-			setPhoneError(true);
-			setTimeout(() => {
-				setPhoneError(false);
-			}, 1000);
-			return;
-		} else addNewContact();
-	}
-	function resetValues() {
+	}, []);
+	const resetValues = useCallback(() => {
 		setNameValue('');
 		setPhoneValue('');
 		setPrefixValue('+48');
@@ -88,8 +82,9 @@ export function AddContactForm({ onClose, setContactsList }) {
 		setNameError(false);
 		setPhoneError(false);
 		if (window.innerWidth <= sizes.lg) onClose(false);
-	}
-	function addNewContact() {
+	}, [onClose]);
+
+	const addNewContact = useCallback(() => {
 		setContactsList((prev) => {
 			const updatedContactsList = [
 				{
@@ -105,7 +100,31 @@ export function AddContactForm({ onClose, setContactsList }) {
 			resetValues(); //reset
 			return updatedContactsList;
 		});
-	}
+	}, [
+		imageSrc,
+		nameValue,
+		phoneValue,
+		prefixValue,
+		resetValues,
+		setContactsList,
+	]);
+
+	const validateForm = useCallback(() => {
+		const reg = new RegExp(`^[0-9+]{${phoneLengthValue}}$`);
+		if (nameValue === '') {
+			setNameError(true);
+			setTimeout(() => {
+				setNameError(false);
+			}, 1000);
+			return;
+		} else if (!reg.test(phoneValue)) {
+			setPhoneError(true);
+			setTimeout(() => {
+				setPhoneError(false);
+			}, 1000);
+			return;
+		} else addNewContact();
+	}, [addNewContact, nameValue, phoneLengthValue, phoneValue]);
 
 	return (
 		<>
@@ -140,6 +159,7 @@ export function AddContactForm({ onClose, setContactsList }) {
 							{nameError && <RedP>Wprowadź nazwe</RedP>}
 						</InputTitle>
 						<NameInputField
+							name=''
 							value={nameValue}
 							onChange={handlerNameValue}
 							placeholder={`Wprowadz nazwe kontaktu`}

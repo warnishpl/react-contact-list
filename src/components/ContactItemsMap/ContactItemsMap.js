@@ -29,8 +29,8 @@ export function ContactItemsMap({
 				<ContactItem
 					setContactsList={setContactsList}
 					personalData={element}
-					id={element.id} // jak zastapic ID na key
-					key={element.id} // w DeleteButton.js ??
+					key={element.id} 
+					
 				/>
 			))}
 		</ContactsWrapper>

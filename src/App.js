@@ -16,6 +16,7 @@ import {
 	getLocalStorageValue,
 } from './utils/functions/localStorageFunctions.js';
 import { TEMP_CONTACT_DATA } from './utils/constants/temp_contact_data.js';
+import { NameContextProvider } from './context/NameContext.js';
 
 function App() {
 	const [searchValue, setSearchValue] = useState('');
@@ -42,32 +43,34 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Main>
-				<ThemePicker setTheme={setTheme}></ThemePicker>
-				<SetGlobalStyle />
-				<SearchInput
-					searchValue={searchValue}
-					setSearchValue={debounce(setSearchValue)}
-				/>
-				<AddContactButton onClick={handleAddContactButtonClick} />
-				<ContactsHeader
-					isAscending={isAscending}
-					setIsAscending={setIsAscending}
-				/>
-				<ContactItemsMap
-					isAscending={isAscending}
-					searchValue={searchValue}
-					contactsList={contactsList}
-					setContactsList={setContactsList}
-				/>
-				{isAddContactButtonClicked && (
-					<AddContactForm
+			<NameContextProvider>
+				<Main>
+					<ThemePicker setTheme={setTheme}></ThemePicker>
+					<SetGlobalStyle />
+					<SearchInput
+						searchValue={searchValue}
+						setSearchValue={debounce(setSearchValue)}
+					/>
+					<AddContactButton onClick={handleAddContactButtonClick} />
+					<ContactsHeader
+						isAscending={isAscending}
+						setIsAscending={setIsAscending}
+					/>
+					<ContactItemsMap
+						isAscending={isAscending}
+						searchValue={searchValue}
 						contactsList={contactsList}
 						setContactsList={setContactsList}
-						onClose={handleAddContactButtonClick}
 					/>
-				)}
-			</Main>
+					{isAddContactButtonClicked && (
+						<AddContactForm
+							contactsList={contactsList}
+							setContactsList={setContactsList}
+							onClose={handleAddContactButtonClick}
+						/>
+					)}
+				</Main>
+			</NameContextProvider>
 		</ThemeProvider>
 	);
 }
