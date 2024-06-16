@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SetGlobalStyle } from './styles/GlobalStyles.js';
 import { ThemeProvider } from 'styled-components';
 import { blueDark } from './styles/theme.js';
@@ -16,21 +16,25 @@ import {
 	getLocalStorageValue,
 } from './utils/functions/localStorageFunctions.js';
 import { TEMP_CONTACT_DATA } from './utils/constants/temp_contact_data.js';
-import { NameContextProvider } from './context/NameContext.js';
+import {
+	ContactsListContext,
+	ContactsListProvider,
+} from './context/contactsListContext.js';
+import { IsAscendingProvider } from './context/isAscendingContext.js';
 
 function App() {
 	const [searchValue, setSearchValue] = useState('');
-	const [isAscending, setIsAscending] = useState(true);
-	const [theme, setTheme] = useState(getLocalStorageValue('theme') || blueDark);
+	const [theme, setTheme] = useState(getLocalStorageValue(LOCALSTORAGE_KEYS.THEME) || blueDark);
 	const [isAddContactButtonClicked, setIsAddContactButtonClicked] =
 		useState(false);
 	const handleAddContactButtonClick = () => {
 		setIsAddContactButtonClicked(!isAddContactButtonClicked);
 	};
-	const [contactsList, setContactsList] = useState(TEMP_CONTACT_DATA);
-
+	const ContactsListContextValue = useContext(ContactsListContext);
 	useEffect(() => {
-		setContactsList(getLocalStorageValue(LOCALSTORAGE_KEYS.CONTACTS));
+		ContactsListContextValue.setContactsList(
+			getLocalStorageValue(LOCALSTORAGE_KEYS.CONTACTS)
+		);
 
 		if (!getLocalStorageValue(LOCALSTORAGE_KEYS.CONTACTS)) {
 			setLocalStorgeValue(LOCALSTORAGE_KEYS.CONTACTS, TEMP_CONTACT_DATA); // docelowo []
@@ -39,38 +43,28 @@ function App() {
 			setLocalStorgeValue(LOCALSTORAGE_KEYS.THEME, blueDark);
 			setLocalStorgeValue(LOCALSTORAGE_KEYS.THEME_NAME, 'blueDark');
 		}
-	}, []); //[] <= wywola sie przy 1. renderze
+	}, [ContactsListContextValue]); //[] <= wywola sie przy 1. renderze
 
 	return (
 		<ThemeProvider theme={theme}>
-			<NameContextProvider>
-				<Main>
-					<ThemePicker setTheme={setTheme}></ThemePicker>
-					<SetGlobalStyle />
-					<SearchInput
-						searchValue={searchValue}
-						setSearchValue={debounce(setSearchValue)}
-					/>
-					<AddContactButton onClick={handleAddContactButtonClick} />
-					<ContactsHeader
-						isAscending={isAscending}
-						setIsAscending={setIsAscending}
-					/>
-					<ContactItemsMap
-						isAscending={isAscending}
-						searchValue={searchValue}
-						contactsList={contactsList}
-						setContactsList={setContactsList}
-					/>
-					{isAddContactButtonClicked && (
-						<AddContactForm
-							contactsList={contactsList}
-							setContactsList={setContactsList}
-							onClose={handleAddContactButtonClick}
+			<IsAscendingProvider>
+				<ContactsListProvider>
+					<Main>
+						<ThemePicker setTheme={setTheme}></ThemePicker>
+						<SetGlobalStyle />
+						<SearchInput
+							searchValue={searchValue}
+							setSearchValue={debounce(setSearchValue)}
 						/>
-					)}
-				</Main>
-			</NameContextProvider>
+						<AddContactButton onClick={handleAddContactButtonClick} />
+						<ContactsHeader />
+						<ContactItemsMap searchValue={searchValue} />
+						{isAddContactButtonClicked && (
+							<AddContactForm onClose={handleAddContactButtonClick} />
+						)}
+					</Main>
+				</ContactsListProvider>
+			</IsAscendingProvider>
 		</ThemeProvider>
 	);
 }

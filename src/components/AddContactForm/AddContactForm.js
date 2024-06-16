@@ -21,13 +21,15 @@ import {
 } from '../AddContactForm/AddContactForm.styles.js';
 import { ReactComponent as BackIcon } from '../../assets/arrow-left.svg';
 import { SaveButton } from '../SaveButton/SaveButton';
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useContext } from 'react';
 import { CountryDropdownMenu } from '../CountryDropdownMenu/CountryDropdownMenu.js';
 import defaultAvatar from '../../assets/default_avatar_black.jpg';
 import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions.js';
 import { sizes } from '../../styles/media.js';
+import { LOCALSTORAGE_KEYS } from '../../utils/constants/localStorageKeys.js';
+import { ContactsListContext } from '../../context/contactsListContext.js';
 
-export function AddContactForm({ onClose, setContactsList }) {
+export function AddContactForm({ onClose }) {
 	const inputRef = useRef(null);
 	const [nameValue, setNameValue] = useState('');
 	const [phoneValue, setPhoneValue] = useState('');
@@ -38,6 +40,7 @@ export function AddContactForm({ onClose, setContactsList }) {
 	const [nameError, setNameError] = useState(false);
 	const [phoneError, setPhoneError] = useState(false);
 
+	const ContactsListContextValue = useContext(ContactsListContext)
 	// TODO: dane z forumlarza wyciągać po kliknięciu przycisku
 
 	const handleFileChange = useCallback(
@@ -85,7 +88,7 @@ export function AddContactForm({ onClose, setContactsList }) {
 	}, [onClose]);
 
 	const addNewContact = useCallback(() => {
-		setContactsList((prev) => {
+		ContactsListContextValue.setContactsList((prev) => {
 			const updatedContactsList = [
 				{
 					id: crypto.randomUUID(),
@@ -96,7 +99,7 @@ export function AddContactForm({ onClose, setContactsList }) {
 				},
 				...prev,
 			];
-			setLocalStorgeValue('contacts', updatedContactsList);
+			setLocalStorgeValue(LOCALSTORAGE_KEYS.CONTACTS, updatedContactsList);
 			resetValues(); //reset
 			return updatedContactsList;
 		});
@@ -106,7 +109,7 @@ export function AddContactForm({ onClose, setContactsList }) {
 		phoneValue,
 		prefixValue,
 		resetValues,
-		setContactsList,
+		ContactsListContextValue
 	]);
 
 	const validateForm = useCallback(() => {

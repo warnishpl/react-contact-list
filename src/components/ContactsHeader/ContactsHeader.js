@@ -1,6 +1,6 @@
 import { SortButton } from '../SortButton/SortButton.js';
 import { HeaderWrapper, Wrapper } from './ContactsHeader.styles.js';
-export function ContactsHeader({ isAscending, setIsAscending }) {
+export function ContactsHeader() {
 
 	return (
 		<HeaderWrapper>
@@ -8,7 +8,7 @@ export function ContactsHeader({ isAscending, setIsAscending }) {
 				<h1>Moje kontakty</h1>
 			</Wrapper>
 
-			<SortButton isAscending={isAscending} setIsAscending={setIsAscending} />
+			<SortButton/>
 		</HeaderWrapper>
 	);
 }

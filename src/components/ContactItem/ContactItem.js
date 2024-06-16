@@ -10,31 +10,26 @@ import {
 	DeleteIconWrapper,
 } from './ContactItem.styles.js';
 import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions.js';
-import { NameContext } from '../../context/NameContext.js';
 import { LOCALSTORAGE_KEYS } from '../../utils/constants/localStorageKeys.js';
+import { ContactsListContext } from '../../context/contactsListContext.js';
 
-export const ContactItem = ({ personalData, setContactsList }) => {
+export const ContactItem = ({ personalData }) => {
 	const { name, prefix, phone, picture } = personalData;
 	const [isExtended, setIsExtended] = useState(false);
 	function handlerIsExtended() {
-		setIsExtended(!isExtended);
+		setIsExtended((prev) => !prev);
 	}
-
-	const NameContextValue = useContext(NameContext);
-
-	console.log(NameContextValue);
+	const ContactsListContextValue = useContext(ContactsListContext);
 
 	const deleteContact = useCallback(() => {
-		NameContextValue.setName('kamil');
-		setContactsList((prev) => {
+		ContactsListContextValue.setContactsList((prev) => {
 			const updatedContactsList = prev.filter(
 				(el) => el.id !== personalData.id
 			);
-			// contacts ze stalej
 			setLocalStorgeValue(LOCALSTORAGE_KEYS.CONTACTS, updatedContactsList);
 			return updatedContactsList;
 		});
-	}, [NameContextValue, setContactsList, personalData.id]);
+	}, [ContactsListContextValue, personalData.id]);
 
 	return (
 		<ContactItemWrapper onClick={handlerIsExtended} $isExtended={isExtended}>
