@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
-import { TEMP_CONTACT_DATA } from '../utils/constants/temp_contact_data';
+import { getLocalStorageValue } from '../utils/functions/localStorageFunctions';
+import { LOCALSTORAGE_KEYS } from '../utils/constants/localStorageKeys';
 
 export const ContactsListContext = createContext({
 	contactsList: null,
@@ -7,7 +8,9 @@ export const ContactsListContext = createContext({
 });
 
 export const ContactsListProvider = ({ children }) => {
-	const [contactsList, setContactsList] = useState(TEMP_CONTACT_DATA);
+	const [contactsList, setContactsList] = useState(
+		getLocalStorageValue(LOCALSTORAGE_KEYS.CONTACTS)
+	);
 
 	return (
 		<ContactsListContext.Provider value={{ contactsList, setContactsList }}>

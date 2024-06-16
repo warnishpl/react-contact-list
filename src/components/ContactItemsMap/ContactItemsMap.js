@@ -4,18 +4,9 @@ import { ContactsWrapper } from './ContactItemsMap.styles.js';
 import { ContactsListContext } from '../../context/contactsListContext.js';
 import { isAscendingContext } from '../../context/isAscendingContext.js';
 
-<<<<<<< HEAD
-export function ContactItemsMap({
-	contactsList,
-	setContactsList,
-	searchValue,
-	isAscending,
-}) {
-=======
 export function ContactItemsMap({ searchValue }) {
 	const isAscendingContextValue = useContext(isAscendingContext);
 	const ContactsListContextValue = useContext(ContactsListContext);
->>>>>>> develop
 	const lowerCaseSearchValue = searchValue.toLowerCase();
 	const filteredContactsList = ContactsListContextValue.contactsList.filter(
 		(contact) =>
@@ -35,16 +26,7 @@ export function ContactItemsMap({ searchValue }) {
 	return (
 		<ContactsWrapper>
 			{sortedContactsList.map((element) => (
-<<<<<<< HEAD
-				<ContactItem
-					setContactsList={setContactsList}
-					personalData={element}
-					id={element.id} // jak zastapic ID na key
-					key={element.id} // w DeleteButton.js ??
-				/>
-=======
 				<ContactItem personalData={element} key={element.id} />
->>>>>>> develop
 			))}
 		</ContactsWrapper>
 	);

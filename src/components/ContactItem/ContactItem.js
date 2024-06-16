@@ -13,11 +13,7 @@ import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions
 import { LOCALSTORAGE_KEYS } from '../../utils/constants/localStorageKeys.js';
 import { ContactsListContext } from '../../context/contactsListContext.js';
 
-<<<<<<< HEAD
-export const ContactItem = ({ personalData, setContactsList, id }) => {
-=======
 export const ContactItem = ({ personalData }) => {
->>>>>>> develop
 	const { name, prefix, phone, picture } = personalData;
 	const [isExtended, setIsExtended] = useState(false);
 	function handlerIsExtended() {
@@ -45,11 +41,7 @@ export const ContactItem = ({ personalData }) => {
 					<p>{name}</p>
 				</NameWrapper>
 				<DeleteIconWrapper>
-<<<<<<< HEAD
-					<DeleteButton id={id} setContactsList={setContactsList} />
-=======
 					<DeleteButton onClick={deleteContact} />
->>>>>>> develop
 				</DeleteIconWrapper>
 
 				<PhoneWrapper $isExtended={isExtended}>
