@@ -24,13 +24,17 @@ import { IsAscendingProvider } from './context/isAscendingContext.js';
 
 function App() {
 	const [searchValue, setSearchValue] = useState('');
-	const [theme, setTheme] = useState(getLocalStorageValue(LOCALSTORAGE_KEYS.THEME) || blueDark);
+	const [theme, setTheme] = useState(
+		getLocalStorageValue(LOCALSTORAGE_KEYS.THEME) || blueDark
+	);
 	const [isAddContactButtonClicked, setIsAddContactButtonClicked] =
 		useState(false);
 	const handleAddContactButtonClick = () => {
 		setIsAddContactButtonClicked(!isAddContactButtonClicked);
 	};
+
 	const ContactsListContextValue = useContext(ContactsListContext);
+
 	useEffect(() => {
 		ContactsListContextValue.setContactsList(
 			getLocalStorageValue(LOCALSTORAGE_KEYS.CONTACTS)

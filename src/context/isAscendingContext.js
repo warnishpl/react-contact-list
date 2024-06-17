@@ -1,16 +1,15 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const isAscendingContext = createContext({
-	isAscending: null,
+	isAscending: false,
 	setIsAscending: () => {},
 });
 
 export const IsAscendingProvider = ({ children }) => {
 	const [isAscending, setIsAscending] = useState(true);
+
 	return (
-		<isAscendingContext.Provider
-			value={(isAscending, setIsAscending)}
-		>
+		<isAscendingContext.Provider value={{ isAscending, setIsAscending }}>
 			{children}
 		</isAscendingContext.Provider>
 	);
