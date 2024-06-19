@@ -14,11 +14,11 @@ export const AddContactButtonProvider = ({ children }) => {
 	};
 	return (
 		<AddContactButtonContext.Provider
-			value={
-				(isAddContactButtonClicked,
+			value={{
+				isAddContactButtonClicked,
 				setIsAddContactButtonClicked,
-				handleAddContactButtonClick)
-			}
+				handleAddContactButtonClick,
+			}}
 		>
 			{children}
 		</AddContactButtonContext.Provider>
