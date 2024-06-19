@@ -21,19 +21,16 @@ import {
 	ContactsListProvider,
 } from './context/contactsListContext.js';
 import { IsAscendingProvider } from './context/isAscendingContext.js';
+import { AddContactButtonContext, AddContactButtonProvider } from './context/isAddContactButtonClicked.js';
 
 function App() {
 	const [searchValue, setSearchValue] = useState('');
 	const [theme, setTheme] = useState(
 		getLocalStorageValue(LOCALSTORAGE_KEYS.THEME) || blueDark
 	);
-	const [isAddContactButtonClicked, setIsAddContactButtonClicked] =
-		useState(false);
-	const handleAddContactButtonClick = () => {
-		setIsAddContactButtonClicked(!isAddContactButtonClicked);
-	};
 
 	const ContactsListContextValue = useContext(ContactsListContext);
+	const AddContactButtonContextValue = useContext(AddContactButtonContext);
 
 	useEffect(() => {
 		ContactsListContextValue.setContactsList(
@@ -53,20 +50,22 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<IsAscendingProvider>
 				<ContactsListProvider>
-					<Main>
-						<ThemePicker setTheme={setTheme}></ThemePicker>
-						<SetGlobalStyle />
-						<SearchInput
-							searchValue={searchValue}
-							setSearchValue={debounce(setSearchValue)}
-						/>
-						<AddContactButton onClick={handleAddContactButtonClick} />
-						<ContactsHeader />
-						<ContactItemsMap searchValue={searchValue} />
-						{isAddContactButtonClicked && (
-							<AddContactForm onClose={handleAddContactButtonClick} />
-						)}
-					</Main>
+					<AddContactButtonProvider>
+						<Main>
+							<ThemePicker setTheme={setTheme}></ThemePicker>
+							<SetGlobalStyle />
+							<SearchInput
+								searchValue={searchValue}
+								setSearchValue={debounce(setSearchValue)}
+							/>
+							<AddContactButton />
+							<ContactsHeader />
+							<ContactItemsMap searchValue={searchValue} />
+							{AddContactButtonContextValue.isAddContactButtonClicked && (
+								<AddContactForm />
+							)}
+						</Main>
+					</AddContactButtonProvider>
 				</ContactsListProvider>
 			</IsAscendingProvider>
 		</ThemeProvider>

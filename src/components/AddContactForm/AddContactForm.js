@@ -28,8 +28,9 @@ import { setLocalStorgeValue } from '../../utils/functions/localStorageFunctions
 import { sizes } from '../../styles/media.js';
 import { LOCALSTORAGE_KEYS } from '../../utils/constants/localStorageKeys.js';
 import { ContactsListContext } from '../../context/contactsListContext.js';
+import { AddContactButtonContext } from '../../context/isAddContactButtonClicked.js';
 
-export function AddContactForm({ onClose }) {
+export function AddContactForm() {
 	const inputRef = useRef(null);
 	const [nameValue, setNameValue] = useState('');
 	const [phoneValue, setPhoneValue] = useState('');
@@ -40,7 +41,8 @@ export function AddContactForm({ onClose }) {
 	const [nameError, setNameError] = useState(false);
 	const [phoneError, setPhoneError] = useState(false);
 
-	const ContactsListContextValue = useContext(ContactsListContext)
+	const ContactsListContextValue = useContext(ContactsListContext);
+	const AddContactButtonContextValue = useContext(AddContactButtonContext);
 	// TODO: dane z forumlarza wyciągać po kliknięciu przycisku
 
 	const handleFileChange = useCallback(
@@ -84,8 +86,8 @@ export function AddContactForm({ onClose }) {
 		setImageSrc(null);
 		setNameError(false);
 		setPhoneError(false);
-		if (window.innerWidth <= sizes.lg) onClose(false);
-	}, [onClose]);
+		if (window.innerWidth <= sizes.lg) AddContactButtonContextValue.handleAddContactButtonClick(false);
+	}, [AddContactButtonContextValue]);
 
 	const addNewContact = useCallback(() => {
 		ContactsListContextValue.setContactsList((prev) => {
@@ -131,12 +133,12 @@ export function AddContactForm({ onClose }) {
 
 	return (
 		<>
-			<Background onClick={onClose}></Background>
+			<Background onClick={AddContactButtonContextValue.handleAddContactButtonClick}></Background>
 			<AddContactFormWrapper>
 				<AddContactBox>
 					<Header>
 						<IconWrapper>
-							<BackIcon onClick={onClose} />
+							<BackIcon onClick={AddContactButtonContextValue.handleAddContactButtonClick} />
 						</IconWrapper>
 						<p>Dodaj kontakt</p>
 					</Header>
